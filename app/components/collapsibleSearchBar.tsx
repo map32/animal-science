@@ -8,10 +8,11 @@ interface CollapsibleSearchBarProps {
     title: string,
     textInputRef: React.Ref<TextInput>,
     placeholderText? : string,
+    open: boolean,
+    setOpen: (open: boolean) => void
 }
 
-const CollapsibleSearchBar: FC<CollapsibleSearchBarProps> = ({search, title, textInputRef, placeholderText}) => {
-    const [open, setOpen] = useState(false);
+const CollapsibleSearchBar: FC<CollapsibleSearchBarProps> = ({open, setOpen, search, title, textInputRef, placeholderText}) => {
     const searchBarHeight = useSharedValue(0); // Shared value for the search bar's height
     const animatedSearchBarHeight = useSharedValue(0);
     const searchContainerStyle = useAnimatedStyle(() => ({
@@ -20,15 +21,17 @@ const CollapsibleSearchBar: FC<CollapsibleSearchBarProps> = ({search, title, tex
     }));
     const toggleSearch = () => {
         if (!open) setOpen(true);
-        else animatedSearchBarHeight.value = withTiming(0,{
-                duration: 300,
-            },( ) => {runOnJS(setOpen)(false);});
+        else {
+            setOpen(false);
+        }
     }
 
     const onSearchBarLayout = (event: any) => {
         const { height } = event.nativeEvent.layout;
         if (height > 0 && searchBarHeight.value === 0) {
-        searchBarHeight.value = height;
+        searchBarHeight.value = withTiming(height,{
+                duration: 300,
+            });
         }
     };
 
@@ -37,8 +40,10 @@ const CollapsibleSearchBar: FC<CollapsibleSearchBarProps> = ({search, title, tex
             animatedSearchBarHeight.value = withTiming(searchBarHeight.value,{
                 duration: 300,
             });
-        }
-    },[open, searchBarHeight.value])
+        } else animatedSearchBarHeight.value = withTiming(0,{
+                duration: 300,
+            });
+    },[open])
 
     return (<>
         <TouchableOpacity style={[{ zIndex: 1 }]} onPress={toggleSearch}>

@@ -33,6 +33,7 @@ export default function DescriptionScreen() {
     }
     return (
         <SafeAreaView style={styles.safe}>
+            <View style={{flex: 1, width: '100%'}} >
             <ScrollView style={styles.container}>
                 {typeof data.image_url === "string" && data.image_url ? (
                     <Image source={{ uri: data.image_url }} style={styles.mainImage} />
@@ -85,15 +86,16 @@ export default function DescriptionScreen() {
                 )}
             </ScrollView>
             <TouchableOpacity style={styles.backButton} onPress={() => {router.back();}}>
-                <AntDesign name="back" size={24} color="white" />
-            </TouchableOpacity>
+                    <AntDesign name="back" size={24} color="white" />
+                </TouchableOpacity>
+            </View>
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     safe: {height: '100%', width: '100%', position: 'relative'},
-    container: { flex: 1, backgroundColor: "#fff", padding: 16 },
+    container: { flex: 1, backgroundColor: "#fff", padding: 16},
     mainImage: { width: "100%", height: 200, borderRadius: 12, marginBottom: 16 },
     koreanName: { fontSize: 28, fontWeight: "bold", marginBottom: 4 },
     englishName: { fontSize: 18, color: "#666", marginBottom: 4 },
@@ -105,8 +107,9 @@ const styles = StyleSheet.create({
     historyText: { fontSize: 16, marginBottom: 2 },
     sectionContent: { fontSize: 16, marginBottom: 2, lineHeight: 22 },
     extraImage: { aspectRatio: 0.5, borderRadius: 8, marginTop: 8, resizeMode: 'contain' },
-    backButton: { position: 'absolute', top: 48,
-    right: 8,
+    backButton: { position: 'absolute', top: 8,
+        zIndex: 1,
+        right: 8,
     height: 40,
     width: 40,
     backgroundColor: 'rgb(60, 65, 69)', justifyContent: 'center', alignItems: 'center'}

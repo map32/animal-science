@@ -6,6 +6,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import json
+import requests
+import math
 from bs4 import BeautifulSoup
 import os
 
@@ -173,17 +175,293 @@ def extract_info_from_html():
         json.dump(results, f, ensure_ascii=False, indent=2)
     print("Extraction complete. Results saved to species_info.json.")
 
+def scrape_html_by_province():
+    import math
+    link = 'https://species.nibr.go.kr/research/getRlclsListAjax.do'
+    provinces = [
+        '강원도', '경기도', '경상남도', '경상북도', '광주광역시', '대구광역시', '대전광역시',
+        '부산광역시', '서울특별시', '세종특별자치시', '울산광역시', '인천광역시',
+        '전라남도', '전라북도', '제주특별자치도', '충청남도', '충청북도'
+    ]
+    all_results = []
+    for province in provinces:
+        print(f"Fetching species for {province}...")
+        params = {
+            "pageIndex": "1",
+            "sch_comm_group": "",
+            "sch_sido_nm": province,
+            "sch_js_start": "2013-01-01",
+            "sch_js_end": "2024-12-31",
+            "sch_area_keyword": "",
+            "sch_text": province,
+            "groupNm": "",
+            "page_type": "1"
+        }
+        response = requests.get(link, params=params)
+        if response.status_code != 200:
+            print(f"Failed to fetch data for {province}: {response.status_code}")
+            continue
+
+        soup = BeautifulSoup(response.text, "html.parser")
+        total_span = soup.find("span", class_="fc-red fs16")
+        total_count = 0
+        if total_span:
+            import re
+            match = re.search(r"\(총\s*([\d,]+)건\)", total_span.text)
+            if match:
+                total_count = int(match.group(1).replace(",", ""))
+        if total_count == 0:
+            print(f"No species found for {province}.")
+            continue
+
+        pages = math.ceil(total_count / 5)
+        print(f"{province}: {total_count} species, {pages} pages.")
+
+        for page in range(1, pages + 1):
+            params["pageIndex"] = str(page)
+            resp = requests.get(link, params=params)
+            if resp.status_code == 200:
+                all_results.append({
+                    "province": province,
+                    "page": page,
+                    "html": resp.text
+                })
+            else:
+                print(f"Failed to fetch page {page} for {province}: {resp.status_code}")
+
+    with open("province_species_list.json", "w", encoding="utf-8") as f:
+        json.dump(all_results, f, ensure_ascii=False, indent=2)
+    print("Saved all province HTML results to province_species_list.json")
+    extract_species_names_by_province()
+
+def extract_species_names_by_province():
+    import os
+    from bs4 import BeautifulSoup
+
+    if not os.path.exists("province_species_list.json"):
+        print("province_species_list.json not found.")
+        return
+
+    with open("province_species_list.json", "r", encoding="utf-8") as f:
+        all_results = json.load(f)
+
+    province_species = {}
+
+    for entry in all_results:
+        province = entry["province"]
+        html = entry["html"]
+        soup = BeautifulSoup(html, "html.parser")
+        tbody = soup.find("tbody")
+        if not tbody:
+            continue
+        for tr in tbody.find_all("tr"):
+            tds = tr.find_all("td")
+            if len(tds) >= 2:
+                species_name = tds[1].get_text(strip=True)
+                if province not in province_species:
+                    province_species[province] = []
+                province_species[province].append(species_name)
+
+    # Check for duplicates and notify if any
+    has_duplicates = False
+    for province, names in province_species.items():
+        unique_names = list(dict.fromkeys(names))
+        if len(unique_names) != len(names):
+            print(f"Warning: Duplicates found in {province}")
+            has_duplicates = True
+        province_species[province] = unique_names
+
+    if not has_duplicates:
+        print("No duplicates found in any province.")
+
+    with open("province_species_names.json", "w", encoding="utf-8") as f:
+        json.dump(province_species, f, ensure_ascii=False, indent=2)
+    print("Saved species names by province to province_species_names.json")
+
+geojson_to_species_distribution = {
+    "45111": "52111",  # 전주시 완산구 → 전라북도 전주시 완산구
+    "45113": "52113",  # 전주시 덕진구 → 전라북도 전주시 덕진구
+    "45130": "52130",  # 군산시 → 전라북도 군산시
+    "45140": "52140",  # 익산시 → 전라북도 익산시
+    "45180": "52180",  # 정읍시 → 전라북도 정읍시
+    "45190": "52190",  # 남원시 → 전라북도 남원시
+    "45210": "52210",  # 김제시 → 전라북도 김제시
+    "45710": "52710",  # 완주군 → 전라북도 완주군
+    "45720": "52720",  # 진안군 → 전라북도 진안군
+    "45730": "52730",  # 무주군 → 전라북도 무주군
+    "45740": "52740",  # 장수군 → 전라북도 장수군
+    "45750": "52750",  # 임실군 → 전라북도 임실군
+    "45770": "52770",  # 순창군 → 전라북도 순창군
+    "45790": "52790",  # 고창군 → 전라북도 고창군
+    "45800": "52800"   # 부안군 → 전라북도 부안군
+}
+
+def convCode(code):
+    if code in geojson_to_species_distribution:
+        return geojson_to_species_distribution[code]
+    return code
+
+def scrape_html_by_districts():
+    link = 'https://species.nibr.go.kr/research/getRlclsListAjax.do'
+    with open("./app/assets/district_codes.json", "r", encoding="utf-8") as f:
+        districts = json.load(f)
+    with open("./app/assets/species_distribution.json", "r", encoding="utf-8") as f:
+        distribution_raw = json.load(f)
+    distribution = {}
+    for entry in distribution_raw:
+        if 'districts_distribution' not in entry:
+            continue
+        for item in entry['districts_distribution']:
+            distribution[item['code']] = item['total']
+    tot = len(districts)
+    def gangwon(text):
+        if text == '강원' or text == '강원특별자치도':
+            return "강원도"
+        elif text =='전라북도':
+            return
+        return text
+    all_results = []
+    mismatches = []
+    for i, code in enumerate(districts):
+        district = districts[code]
+        code_converted = convCode(code)
+        print(f"Fetching species for {district}... {i+1}/{tot}")
+        params = {
+            "pageIndex": "1",
+            "sch_comm_group": "",
+            "sch_sido_nm": gangwon(district['Province']),
+            "sch_js_start": "2013-01-01",
+            "sch_js_end": "2024-12-31",
+            "sch_area_keyword": district['SIG_KOR_NM'],
+            "sch_text": f"{gangwon(district['Province'])} {district['SIG_KOR_NM']}",
+            "groupNm": "",
+            "page_type": "1"
+        }
+        response = requests.get(link, params=params)
+        if response.status_code != 200:
+            print(f"Failed to fetch data for {gangwon(district['Province'])} {district['SIG_KOR_NM']}: {response.status_code}")
+            continue
+
+        soup = BeautifulSoup(response.text, "html.parser")
+        total_span = soup.find("span", class_="fc-red fs16")
+        total_count = 0
+        if total_span:
+            import re
+            match = re.search(r"\(총\s*([\d,]+)건\)", total_span.text)
+            if match:
+                total_count = int(match.group(1).replace(",", ""))
+        if total_count == 0:
+            print(f"No species found for {gangwon(district['Province'])} {district['SIG_KOR_NM']}.")
+            try:
+                if int(distribution[code_converted]) != total_count:
+                    print(f"{gangwon(district['Province'])} {district['SIG_KOR_NM']} mismatch: {total_count} on webpage, {distribution[code_converted]} on json.")
+                    mismatches.append(districts[code])
+            except:
+                print(f"{gangwon(district['Province'])} {district['SIG_KOR_NM']} not found in species_info.json")
+                mismatches.append(districts[code])
+            continue
+
+        pages = math.ceil(total_count / 5)
+        print(f"{gangwon(district['Province'])} {district['SIG_KOR_NM']}: {total_count} species, {pages} pages.")
+        try:
+            if int(distribution[code_converted]) != total_count:
+                print(f"{gangwon(district['Province'])} {district['SIG_KOR_NM']} mismatch: {total_count} on webpage, {distribution[code_converted]} on json.")
+                mismatches.append(districts[code])
+        except:
+            print(f"{gangwon(district['Province'])} {district['SIG_KOR_NM']} not found in species_info.json")
+            mismatches.append(districts[code])
+        for page in range(1, pages + 1):
+            params["pageIndex"] = str(page)
+            resp = requests.get(link, params=params)
+            if resp.status_code == 200:
+                all_results.append({
+                    "code": code,
+                    "page": page,
+                    "html": resp.text
+                })
+            else:
+                print(f"Failed to fetch page {page} for {gangwon(district['Province'])} {district['SIG_KOR_NM']}: {resp.status_code}")
+    print("all mismatches: ", mismatches)
+    with open("district_species_list.json", "w", encoding="utf-8") as f:
+        json.dump(all_results, f, ensure_ascii=False, indent=2)
+    print("Saved all province HTML results to district_species_list.json")
+    extract_species_names_by_district()
+
+def extract_species_names_by_district():
+    import os
+    from bs4 import BeautifulSoup
+    convert = {
+        "Gymnadeniacucullata(L.) Rich.": "구름병아리난초",
+        "Trientaliseuropaeavar.arcticaLedeb.": "기생꽃",
+        "닺꽃": "참닺꽃",
+        "꼬마잠자리": "한국꼬마잠자리",
+        "LeontopodiumhallaisanenseHand.-Mazz.": "한라솜다리리"
+    }
+    def conv(text):
+        if text in convert:
+            return convert[text]
+        return text
+    if not os.path.exists("district_species_list.json"):
+        print("district_species_list.json not found.")
+        return
+
+    with open("district_species_list.json", "r", encoding="utf-8") as f:
+        all_results = json.load(f)
+    with open("./app/assets/species_info.json", "r", encoding="utf-8") as f:
+        info_raw = json.load(f)
+    info = {}
+    for entry in info_raw:
+        info[entry['korean_name']] = entry['id']
+
+    district_species = {}
+
+    for entry in all_results:
+        code = entry["code"]
+        html = entry["html"]
+        soup = BeautifulSoup(html, "html.parser")
+        tbody = soup.find("tbody")
+        if not tbody:
+            continue
+        for tr in tbody.find_all("tr"):
+            tds = tr.find_all("td")
+            if len(tds) >= 2:
+                species_name = tds[1].get_text(strip=True)
+                if code not in district_species:
+                    district_species[code] = []
+                district_species[code].append({"name": species_name, "id": None if conv(species_name) not in info else info[conv(species_name)]})
+
+    # Check for duplicates and notify if any
+    has_duplicates = False
+    for district_code, names in district_species.items():
+        unique_names = [i for n, i in enumerate(names) if i not in names[n + 1:]]
+        if len(unique_names) != len(names):
+            print(f"Warning: Duplicates found in district with code {district_code}")
+            has_duplicates = True
+        district_species[district_code] = unique_names
+
+    if not has_duplicates:
+        print("No duplicates found in any province.")
+
+    with open("district_species_names.json", "w", encoding="utf-8") as f:
+        json.dump(district_species, f, ensure_ascii=False, indent=2)
+    print("Saved species names by province to district_species_names.json")
 
 if __name__ == "__main__":
     print('Pick a type of scraping:')
     print('1. Species HTMLs')
     print('2. HTML Extraction')
-    print('3. Quit')
+    print('3. Species List By Province')
+    print('4. Species List By District')
+    print('5. Quit')
     choice = input('Enter your choice (1 or 2): ')
     if choice == '1':
         scrape_animal_html()
     elif choice == '2':
         res = extract_info_from_html()
+    elif choice == '3':
+        scrape_html_by_province()
+    elif choice == '4':
+        extract_species_names_by_district()
     else:
         print("Exiting the scraper.")
         exit(0)

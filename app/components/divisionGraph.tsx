@@ -36,7 +36,7 @@ const CATEGORY_LABELS_KO: { [key: string]: string } = {
 const DivisionGraph: FC<DivisionGraphProps> = ({size, data}) => {
     const slices = useMemo(() => {
         return data !== undefined ? Object.entries(data)
-            .filter(([key, value]) => key !== "total" && key !== "name" && value !== "0")
+            .filter(([key, value]) => key !== "total" && key !== "name" && key !== "code" && value !== "0")
             .map(([key, value]) => ({value: parseInt(value, 10), color: CATEGORY_COLORS[key], label:{text: CATEGORY_LABELS_KO[key]}})) : []
     }, [data])
     return (

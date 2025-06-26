@@ -35,7 +35,7 @@ interface DivisionTableProps {
 export const DivisionTable: FC<DivisionTableProps> = ({ data }) => {
     if (!data) return null
     const rows = Object.entries(data)
-        .filter(([key, value]) => key !== "total" && key !== "name" && value !== "0")
+        .filter(([key, value]) => key !== "total" && key !== "name" && key !== 'code' && value !== "0")
     return (
         <View style={tableStyles.table}>
             <View style={tableStyles.headerRow}>
