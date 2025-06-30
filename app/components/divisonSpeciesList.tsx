@@ -1,8 +1,8 @@
 import { FC, memo } from 'react'
 import { View, StyleSheet, Text} from 'react-native'
-import { ScrollView } from 'react-native'
-import { Image } from 'expo-image'
+import { TouchableOpacity, FlatList } from 'react-native-gesture-handler'
 import { SST } from '@/utils/search'
+import { useRouter } from 'expo-router'
 
 const CATEGORY_COLORS: { [key: string]: string } = {
     mammals: '#FF6384',
@@ -39,37 +39,48 @@ interface DivisionTableProps {
 }
 
 export const DivisionSpeciesList: FC<DivisionTableProps> = ({ data }) => {
+    const router = useRouter();
     return (
         <View style={tableStyles.table}>
             <View style={tableStyles.headerRow}>
-                <Text style={[tableStyles.cell, tableStyles.header]}>사진</Text>
                 <Text style={[tableStyles.cell, tableStyles.header]}>이름</Text>
                 <Text style={[tableStyles.cell, tableStyles.header]}>분류</Text>
                 <Text style={[tableStyles.cell, tableStyles.header]}>등급</Text>
             </View>
-            <ScrollView style={tableStyles.content}>
-                {data?.map(({id, image_url, korean_name, english_name, class_type, category}) => (
-                    <View key={id} style={tableStyles.row}>
-                        <View style={tableStyles.imageCell}>
-                            <Image source={image_url} style={{height:60}} />
+            <FlatList
+                data={data}
+                keyExtractor={(item) => item.id.toString()}
+                getItemLayout={(data, index) => (
+                    { length: 60, offset: 60 * index, index }
+                )}
+                maxToRenderPerBatch={5}
+                windowSize={5}
+                initialNumToRender={5}
+                renderItem={({ item }) => (
+                    <TouchableOpacity onPress={() => {
+                                router.navigate(`/description?id=${item.id}`);
+                            }}>
+                        <View style={tableStyles.row}>
+                            <View style={tableStyles.cell}>
+                                <Text style={{fontSize: 10}}>{item.korean_name}</Text>
+                                <Text style={{fontSize: 9}}>{item.english_name}</Text>
+                            </View>
+                            <View style={tableStyles.labelCell}>
+                                <View style={[tableStyles.colorDot, { backgroundColor: CATEGORY_COLORS[CATEGORY_LABELS_EN[item.category]] }]} />
+                                <Text style={tableStyles.labelText}>{item.category}</Text>
+                            </View>
+                            <Text style={tableStyles.cell}>{item.class_type === 'class 1' ? '1급' : item.class_type === 'class 2' ? '2급' : '기타'}</Text>
                         </View>
-                        <View style={tableStyles.cell}>
-                            <Text style={{fontSize: 10}}>{korean_name}</Text>
-                            <Text style={{fontSize: 10}}>{english_name}</Text>
-                        </View>
-                        <View style={tableStyles.labelCell}>
-                            <View style={[tableStyles.colorDot, { backgroundColor: CATEGORY_COLORS[CATEGORY_LABELS_EN[category]] }]} />
-                            <Text style={tableStyles.labelText}>{category}</Text>
-                        </View>
-                        <Text style={tableStyles.cell}>{class_type === 'class 1' ? '1급' : class_type === 'class 2' ? '2급' : '기타'}</Text>
-                    </View>
-                ))}
-            </ScrollView>
+                    </TouchableOpacity>
+                )}
+                style={tableStyles.content}
+                showsVerticalScrollIndicator={false}
+                />
         </View>
     )
 }
 
-export default memo(DivisionSpeciesList);
+export default DivisionSpeciesList;
 
 const tableStyles = StyleSheet.create({
     table: {

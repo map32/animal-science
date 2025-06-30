@@ -1,12 +1,12 @@
 {
   "expo": {
     "name": "한반도 멸종위기뷰",
-    "slug": "korea-endangered-animals",
+    "slug": "koreaendangeredanimals",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "koreaendangeredanimals",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
@@ -17,7 +17,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.hestia.korea-endangered-animals"
+      "package": "com.hestia.koreaendangeredanimals"
     },
     "web": {
       "bundler": "metro",
@@ -33,6 +33,16 @@
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
+        }
+      ],
+      "expo-web-browser",
+      [
+      "expo-build-properties",
+        {
+          "android": {
+            "enableProguardInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true
+          }
         }
       ]
     ],

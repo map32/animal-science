@@ -9,7 +9,8 @@ export default function RootLayout() {
       <Stack
         screenOptions={{
           // Hide the header for all other routes.
-          headerShown: false
+          headerShown: false,
+          animation: "fade_from_bottom",
         }}
       />
   );

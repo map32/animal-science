@@ -1,6 +1,6 @@
 import { FC, memo } from 'react'
 import { View, StyleSheet, Text} from 'react-native'
-import { ScrollView } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 
 const CATEGORY_COLORS: { [key: string]: string } = {
     mammals: '#FF6384',
@@ -42,7 +42,7 @@ export const DivisionTable: FC<DivisionTableProps> = ({ data }) => {
                 <Text style={[tableStyles.cell, tableStyles.header]}>분류</Text>
                 <Text style={[tableStyles.cell, tableStyles.header]}>개수</Text>
             </View>
-            <ScrollView style={tableStyles.content}>
+            <ScrollView style={tableStyles.content} >
                 {rows.map(([key, value]) => (
                     <View key={key} style={tableStyles.row}>
                         <View style={tableStyles.labelCell}>

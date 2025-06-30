@@ -5,6 +5,7 @@ import speciesData from "@/assets/species_info.json";
 import { Image } from 'expo-image'
 import { useRouter } from "expo-router";
 import { AntDesign } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 // Helper to find species by id
 function getSpeciesById(id: number) {
@@ -14,7 +15,7 @@ function getSpeciesById(id: number) {
 export default function DescriptionScreen() {
     const params = useLocalSearchParams();
     const router = useRouter();
-    console.log(params)
+    const insets = useSafeAreaInsets();
     const id = Number(params.id);
     const data = getSpeciesById(id);
     if (!data) {
@@ -32,7 +33,7 @@ export default function DescriptionScreen() {
         );
     }
     return (
-        <SafeAreaView style={styles.safe}>
+        <SafeAreaView style={[styles.safe, {paddingTop: insets.top, paddingBottom: insets.bottom}]}>
             <View style={{flex: 1, width: '100%'}} >
             <ScrollView style={styles.container}>
                 {typeof data.image_url === "string" && data.image_url ? (
@@ -95,8 +96,8 @@ export default function DescriptionScreen() {
 
 const styles = StyleSheet.create({
     safe: {height: '100%', width: '100%', position: 'relative'},
-    container: { flex: 1, backgroundColor: "#fff", padding: 16},
-    mainImage: { width: "100%", height: 200, borderRadius: 12, marginBottom: 16 },
+    container: { flex: 1, backgroundColor: 'rgb(246, 246, 246)', padding: 16},
+    mainImage: { width: "100%", aspectRatio: 1, borderRadius: 12, marginBottom: 16 },
     koreanName: { fontSize: 28, fontWeight: "bold", marginBottom: 4 },
     englishName: { fontSize: 18, color: "#666", marginBottom: 4 },
     category: { fontSize: 16, color: "#888", marginBottom: 16 },

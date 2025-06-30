@@ -43,9 +43,8 @@ const styles = StyleSheet.create({
     },
     textbox: {
         flex: 1,
-        marginVertical: 4,
-        paddingVertical: 4,
-        backgroundColor: 'white'
+        marginTop: 4,
+        height: 40,
     },
     border: {
         
@@ -55,8 +54,11 @@ const styles = StyleSheet.create({
     },
     input: {
         width: '100%',
-        height: 24,
-        color: 'black'
+        height: '100%',
+        color: 'black',
+        margin: 0,
+        padding: 0,
+        backgroundColor: 'white',
     },
     button: {
         justifyContent: 'center',

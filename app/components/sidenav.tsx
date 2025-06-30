@@ -21,7 +21,6 @@ interface SideNavProps {
 
 const SideNav: FC<SideNavProps> = ({isOpen, setOpen, openModal}) => {
     const left = useSharedValue<`${number}%` | number>('-100%');
-    const width = useSharedValue(0);
     const ref = useRef<TextInput>(null);
     const ref2 = useRef<TextInput>(null);
     const drawerStyle = useAnimatedStyle(() => ({transform: [{translateX: left.value}]}));
@@ -33,6 +32,7 @@ const SideNav: FC<SideNavProps> = ({isOpen, setOpen, openModal}) => {
     const searchDistricts = (text: string) => {setDistrictsResult(searchAreas(text))}
     const close = () => {setOpen(false); if (ref) ref.current?.blur(); if (ref2) ref2.current?.blur()}
     const onNavButtonPress = () => setOpen(!isOpen);
+    const router = useRouter();
     const gesture = Gesture.Pan()
         .onUpdate((e) => {
             if (e.translationX > 0) return;
@@ -87,11 +87,12 @@ const SideNav: FC<SideNavProps> = ({isOpen, setOpen, openModal}) => {
                                 <CollapsibleSearchBar open={speciesDistributionOpen} setOpen={setSpeciesDistributionOpen} title="멸종위기종 분포" search={searchDistricts} textInputRef={ref2} placeholderText="시군구 검색" />
                             </View>
                             <DistrictList data={districtsResult} open={speciesDistributionOpen} openModal={openModal}/>
-                            <View style={styles.section}>
+                            <View style={styles.pad} />
+                            <TouchableOpacity style={styles.section} onPress={() => router.push('/about')}>
                                 <Text style={styles.sectionText}>
                                     About
                                 </Text>
-                            </View>
+                            </TouchableOpacity>
                         </View>
                     </ScrollView>
                 </Animated.View>
@@ -200,7 +201,7 @@ const styles = StyleSheet.create({
     },
     container: {
         position: 'absolute',
-        zIndex: 0,
+        zIndex: 3,
         top: 0,
         width: SIDENAV_WIDTH,
         height: '100%',
