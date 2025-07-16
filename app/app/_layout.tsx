@@ -1,9 +1,27 @@
-import { Stack } from "expo-router";
-import { useState } from "react";
-import SideNav from "@/components/sidenav";
+import { SplashScreen, Stack, Tabs } from "expo-router";
+import { useEffect, useState } from "react";
+import { useFonts } from 'expo-font';
+import { Text } from "react-native";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [loaded, error] = useFonts({
+    'Poppins': require('@/assets/fonts/PoppinsRegular.otf'),
+    'PoppinsBold': require('@/assets/fonts/PoppinsBold.otf'),
+  });
+
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+  }
+
   
   return (
       <Stack

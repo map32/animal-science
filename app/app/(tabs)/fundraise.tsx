@@ -80,6 +80,12 @@ const About: React.FC = () => {
                     자연적 또는 인위적 위협 요인으로 개체 수가 크게 줄어들고 있어 현재의 위협요인이 제거되거나 완화되지 아니할 경우 가까운 장래에 멸종위기에 처할 우려가 있는 야생생물로서 관계 중앙행정기관의 장과 협의하여 환경부령으로 정하는 종이며, 현재 <Text style={{ fontWeight: "bold" }}>214종</Text>이 지정되었다.
                 </Text>
             </View>
+                <Text style={styles.sectionTitl}>정보 출처조항</Text>
+                <Text style={styles.sectionDes}>
+                    이 어플리케이션의 모든 정보는 국립생태원과 국립생물자원관에서 제공하는 데이터를 기반으로 하며, 대한민국 정부와 무관합니다. 어플리케이션 개발자는 이 정보로 인해 발생하는 어떠한 문제에 대해서도 책임을 지지 않습니다.
+                </Text>
+                <View style={{ marginTop: 20 }}>
+                </View>
         </ScrollView>
         <TouchableOpacity style={[styles.backButton, {marginTop: insets.top + 8}]} onPress={() => {router.back();}}>
             <AntDesign name="back" size={24} color="white" />
@@ -132,6 +138,16 @@ const styles = StyleSheet.create({
         fontSize: 15,
         color: "#444",
         lineHeight: 21,
+    },
+    sectionTitl: {
+        fontSize: 16,
+        color: "#ccc",
+        marginBottom: 8,
+    },
+    sectionDes: {
+        fontSize: 10,
+        color: "#ccc",
+        lineHeight: 16,
     },
     carouselContainer: {
         marginTop: 8,
