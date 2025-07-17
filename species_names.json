@@ -1,0 +1,1130 @@
+[
+  {
+    "korean": "늑대",
+    "scientific": "Canis lupus coreanus"
+  },
+  {
+    "korean": "대륙사슴",
+    "scientific": "Cervus nippon hortulorum"
+  },
+  {
+    "korean": "반달가슴곰",
+    "scientific": "Ursus thibetanus ussuricus"
+  },
+  {
+    "korean": "붉은박쥐",
+    "scientific": "Myotis rufoniger"
+  },
+  {
+    "korean": "사향노루",
+    "scientific": "Moschus moschiferus"
+  },
+  {
+    "korean": "산양",
+    "scientific": "Naemorhedus caudatus"
+  },
+  {
+    "korean": "수달",
+    "scientific": "Lutra lutra"
+  },
+  {
+    "korean": "스라소니",
+    "scientific": "Lynx lynx"
+  },
+  {
+    "korean": "여우",
+    "scientific": "Vulpes vulpes peculiosa"
+  },
+  {
+    "korean": "작은관코박쥐",
+    "scientific": "Murina ussuriensis"
+  },
+  {
+    "korean": "표범",
+    "scientific": "Panthera pardus orientalis"
+  },
+  {
+    "korean": "호랑이",
+    "scientific": "Panthera tigris altaica"
+  },
+  {
+    "korean": "담비",
+    "scientific": "Martes flavigula"
+  },
+  {
+    "korean": "무산쇠족제비",
+    "scientific": "Mustela nivalis"
+  },
+  {
+    "korean": "물개",
+    "scientific": "Callorhinus ursinus"
+  },
+  {
+    "korean": "물범",
+    "scientific": "Phoca largha"
+  },
+  {
+    "korean": "삵",
+    "scientific": "Prionailurus bengalensis"
+  },
+  {
+    "korean": "큰바다사자",
+    "scientific": "Eumetopias jubatus"
+  },
+  {
+    "korean": "토끼박쥐",
+    "scientific": "Plecotus ognevi"
+  },
+  {
+    "korean": "하늘다람쥐",
+    "scientific": "Pteromys volans"
+  },
+  {
+    "korean": "검독수리",
+    "scientific": "Aquila chrysaetos"
+  },
+  {
+    "korean": "넓적부리도요",
+    "scientific": "Eurynorhynchus pygmeus"
+  },
+  {
+    "korean": "노랑부리백로",
+    "scientific": "Egretta eulophotes"
+  },
+  {
+    "korean": "두루미",
+    "scientific": "Grus japonensis"
+  },
+  {
+    "korean": "매",
+    "scientific": "Falco peregrinus"
+  },
+  {
+    "korean": "먹황새",
+    "scientific": "Ciconia nigra"
+  },
+  {
+    "korean": "저어새",
+    "scientific": "Platalea minor"
+  },
+  {
+    "korean": "참수리",
+    "scientific": "Haliaeetus pelagicus"
+  },
+  {
+    "korean": "청다리도요사촌",
+    "scientific": "Tringa guttifer"
+  },
+  {
+    "korean": "크낙새",
+    "scientific": "Dryocopus javensis"
+  },
+  {
+    "korean": "호사비오리",
+    "scientific": "Mergus squamatus"
+  },
+  {
+    "korean": "혹고니",
+    "scientific": "Cygnus olor"
+  },
+  {
+    "korean": "황새",
+    "scientific": "Ciconia boyciana"
+  },
+  {
+    "korean": "흰꼬리수리",
+    "scientific": "Haliaeetus albicilla"
+  },
+  {
+    "korean": "개리",
+    "scientific": "Anser cygnoides"
+  },
+  {
+    "korean": "검은머리갈매기",
+    "scientific": "Larus saundersi"
+  },
+  {
+    "korean": "검은머리물떼새",
+    "scientific": "Haematopus ostralegus"
+  },
+  {
+    "korean": "검은머리촉새",
+    "scientific": "Emberiza aureola"
+  },
+  {
+    "korean": "검은목두루미",
+    "scientific": "Grus grus"
+  },
+  {
+    "korean": "고니",
+    "scientific": "Cygnus columbianus"
+  },
+  {
+    "korean": "고대갈매기",
+    "scientific": "Larus relictus"
+  },
+  {
+    "korean": "긴꼬리딱새",
+    "scientific": "Terpsiphone atrocaudata"
+  },
+  {
+    "korean": "긴점박이올빼미",
+    "scientific": "Strix uralensis"
+  },
+  {
+    "korean": "까막딱다구리",
+    "scientific": "Dryocopus martius"
+  },
+  {
+    "korean": "노랑부리저어새",
+    "scientific": "Platalea leucorodia"
+  },
+  {
+    "korean": "느시",
+    "scientific": "Otis tarda"
+  },
+  {
+    "korean": "독수리",
+    "scientific": "Aegypius monachus"
+  },
+  {
+    "korean": "따오기",
+    "scientific": "Nipponia nippon"
+  },
+  {
+    "korean": "뜸부기",
+    "scientific": "Gallicrex cinerea"
+  },
+  {
+    "korean": "무당새",
+    "scientific": "Emberiza sulphurata"
+  },
+  {
+    "korean": "물수리",
+    "scientific": "Pandion haliaetus"
+  },
+  {
+    "korean": "벌매",
+    "scientific": "Pernis ptilorhynchus"
+  },
+  {
+    "korean": "붉은배새매",
+    "scientific": "Accipiter soloensis"
+  },
+  {
+    "korean": "붉은어깨도요",
+    "scientific": "Calidris tenuirostris"
+  },
+  {
+    "korean": "붉은해오라기",
+    "scientific": "Gorsachius goisagi"
+  },
+  {
+    "korean": "뿔쇠오리",
+    "scientific": "Synthliboramphus wumizusume"
+  },
+  {
+    "korean": "뿔종다리",
+    "scientific": "Galerida cristata"
+  },
+  {
+    "korean": "새매",
+    "scientific": "Accipiter nisus"
+  },
+  {
+    "korean": "새호리기",
+    "scientific": "Falco subbuteo"
+  },
+  {
+    "korean": "섬개개비",
+    "scientific": "Locustella pleskei"
+  },
+  {
+    "korean": "솔개",
+    "scientific": "Milvus migrans"
+  },
+  {
+    "korean": "쇠검은머리쑥새",
+    "scientific": "Emberiza yessoensis"
+  },
+  {
+    "korean": "수리부엉이",
+    "scientific": "Bubo bubo"
+  },
+  {
+    "korean": "알락개구리매",
+    "scientific": "Circus melanoleucos"
+  },
+  {
+    "korean": "알락꼬리마도요",
+    "scientific": "Numenius madagascariensis"
+  },
+  {
+    "korean": "양비둘기",
+    "scientific": "Columba rupestris"
+  },
+  {
+    "korean": "팔색조",
+    "scientific": "Pitta nympha"
+  },
+  {
+    "korean": "재두루미",
+    "scientific": "Grus vipio"
+  },
+  {
+    "korean": "잿빛개구리매",
+    "scientific": "Circus cyaneus"
+  },
+  {
+    "korean": "조롱이",
+    "scientific": "Accipiter gularis"
+  },
+  {
+    "korean": "참매",
+    "scientific": "Accipiter gentilis"
+  },
+  {
+    "korean": "큰고니",
+    "scientific": "Cygnus cygnus"
+  },
+  {
+    "korean": "큰기러기",
+    "scientific": "Anser fabalis"
+  },
+  {
+    "korean": "큰덤불해오라기",
+    "scientific": "Ixobrychus eurhythmus"
+  },
+  {
+    "korean": "큰말똥가리",
+    "scientific": "Buteo hemilasius"
+  },
+  {
+    "korean": "올빼미",
+    "scientific": "Strix aluco"
+  },
+  {
+    "korean": "항라머리검독수리",
+    "scientific": "Aquila clanga"
+  },
+  {
+    "korean": "흑기러기",
+    "scientific": "Branta bernicla"
+  },
+  {
+    "korean": "흑두루미",
+    "scientific": "Grus monacha"
+  },
+  {
+    "korean": "흑비둘기",
+    "scientific": "Columba janthina"
+  },
+  {
+    "korean": "흰목물떼새",
+    "scientific": "Charadrius placidus"
+  },
+  {
+    "korean": "흰이마기러기",
+    "scientific": "Anser erythropus"
+  },
+  {
+    "korean": "흰죽지수리",
+    "scientific": "Aquila heliaca"
+  },
+  {
+    "korean": "비바리뱀",
+    "scientific": "Sibynophis chinensis"
+  },
+  {
+    "korean": "구렁이",
+    "scientific": "Elaphe schrenckii"
+  },
+  {
+    "korean": "남생이",
+    "scientific": "Mauremys reevesii"
+  },
+  {
+    "korean": "표범장지뱀",
+    "scientific": "Eremias argus"
+  },
+  {
+    "korean": "수원청개구리",
+    "scientific": "Dryophytes suweonensis"
+  },
+  {
+    "korean": "고리도롱뇽",
+    "scientific": "Hynobius yangi"
+  },
+  {
+    "korean": "금개구리",
+    "scientific": "Pelophylax chosenicus"
+  },
+  {
+    "korean": "맹꽁이",
+    "scientific": "Kaloula borealis"
+  },
+  {
+    "korean": "감돌고기",
+    "scientific": "Pseudopungtungia nigra"
+  },
+  {
+    "korean": "꼬치동자개",
+    "scientific": "Pseudobagrus brevicorpus"
+  },
+  {
+    "korean": "남방동사리",
+    "scientific": "Odontobutis obscura"
+  },
+  {
+    "korean": "모래주사",
+    "scientific": "Microphysogobio koreensis"
+  },
+  {
+    "korean": "미호종개",
+    "scientific": "Cobitis choii"
+  },
+  {
+    "korean": "얼룩새코미꾸리",
+    "scientific": "Koreocobitis naktongensis"
+  },
+  {
+    "korean": "여울마자",
+    "scientific": "Microphysogobio rapidus"
+  },
+  {
+    "korean": "임실납자루",
+    "scientific": "Acheilognathus somjinensis"
+  },
+  {
+    "korean": "좀수수치",
+    "scientific": "Kichulchoia brevifasciata"
+  },
+  {
+    "korean": "퉁사리",
+    "scientific": "Liobagrus obesus"
+  },
+  {
+    "korean": "흰수마자",
+    "scientific": "Gobiobotia nakdongensis"
+  },
+  {
+    "korean": "가는돌고기",
+    "scientific": "Pseudopungtungia tenuicorpa"
+  },
+  {
+    "korean": "가시고기",
+    "scientific": "Pungitius sinensis"
+  },
+  {
+    "korean": "꺽저기",
+    "scientific": "Coreoperca kawamebari"
+  },
+  {
+    "korean": "꾸구리",
+    "scientific": "Gobiobotia macrocephala"
+  },
+  {
+    "korean": "다묵장어",
+    "scientific": "Lethenteron reissneri"
+  },
+  {
+    "korean": "돌상어",
+    "scientific": "Gobiobotia brevibarba"
+  },
+  {
+    "korean": "묵납자루",
+    "scientific": "Acheilognathus signifer"
+  },
+  {
+    "korean": "버들가지",
+    "scientific": "Rhynchocypris semotilus"
+  },
+  {
+    "korean": "부안종개",
+    "scientific": "Iksookimia pumila"
+  },
+  {
+    "korean": "연준모치",
+    "scientific": "Phoxinus phoxinus"
+  },
+  {
+    "korean": "열목어",
+    "scientific": "Brachymystax lenok tsinlingensis"
+  },
+  {
+    "korean": "칠성장어",
+    "scientific": "Lethenteron japonicus"
+  },
+  {
+    "korean": "큰줄납자루",
+    "scientific": "Acheilognathus majusculus"
+  },
+  {
+    "korean": "한강납줄개",
+    "scientific": "Rhodeus pseudosericeus"
+  },
+  {
+    "korean": "한둑중개",
+    "scientific": "Cottus hangiongensis"
+  },
+  {
+    "korean": "붉은점모시나비",
+    "scientific": "Parnassius bremeri"
+  },
+  {
+    "korean": "비단벌레",
+    "scientific": "Chrysochroa (Chrysochroa) coreana"
+  },
+  {
+    "korean": "산굴뚝나비",
+    "scientific": "Hipparchia autonoe"
+  },
+  {
+    "korean": "상제나비",
+    "scientific": "Aporia crataegi"
+  },
+  {
+    "korean": "수염풍뎅이",
+    "scientific": "Polyphylla laticollis manchurica"
+  },
+  {
+    "korean": "장수하늘소",
+    "scientific": "Callipogon (Eoxenus) relictus"
+  },
+  {
+    "korean": "깊은산부전나비",
+    "scientific": "Protantigius superans"
+  },
+  {
+    "korean": "한국꼬마잠자리",
+    "scientific": "Nannophya koreana"
+  },
+  {
+    "korean": "노란잔산잠자리",
+    "scientific": "Macromia daimoji"
+  },
+  {
+    "korean": "닻무늬길앞잡이",
+    "scientific": "Cicindela (Abroscelis) anchoralis"
+  },
+  {
+    "korean": "대모잠자리",
+    "scientific": "Libellula angelina"
+  },
+  {
+    "korean": "두점박이사슴벌레",
+    "scientific": "Prosopocoilus astacoides blanchardi"
+  },
+  {
+    "korean": "뚱보주름메뚜기",
+    "scientific": "Haplotropis brunneriana"
+  },
+  {
+    "korean": "멋조롱박딱정벌레",
+    "scientific": "Acoptolabrus mirabilissimus mirabilissimus"
+  },
+  {
+    "korean": "물방개",
+    "scientific": "Cybister (Cybister) chinensis"
+  },
+  {
+    "korean": "물장군",
+    "scientific": "Kirkaldyia deyrolli"
+  },
+  {
+    "korean": "소똥구리",
+    "scientific": "Gymnopleurus (Gymnopleurus) mopsus"
+  },
+  {
+    "korean": "쌍꼬리부전나비",
+    "scientific": "Cigaritis takanonis"
+  },
+  {
+    "korean": "애기뿔소똥구리",
+    "scientific": "Copris (Copris) tripartitus"
+  },
+  {
+    "korean": "여름어리표범나비",
+    "scientific": "Mellicta ambigua"
+  },
+  {
+    "korean": "왕은점표범나비",
+    "scientific": "Argynnis nerippe"
+  },
+  {
+    "korean": "은줄팔랑나비",
+    "scientific": "Leptalina unicolor"
+  },
+  {
+    "korean": "참호박뒤영벌",
+    "scientific": "Bombus (Megabombus) koreanus"
+  },
+  {
+    "korean": "창언조롱박딱정벌레",
+    "scientific": "Acoptolabrus changeonleei"
+  },
+  {
+    "korean": "큰자색호랑꽃무지",
+    "scientific": "Osmoderma caeleste"
+  },
+  {
+    "korean": "큰홍띠점박이푸른부전나비",
+    "scientific": "Sinia divina"
+  },
+  {
+    "korean": "귀이빨대칭이",
+    "scientific": "Cristaria plicata"
+  },
+  {
+    "korean": "나팔고둥",
+    "scientific": "Charonia lampas"
+  },
+  {
+    "korean": "남방방게",
+    "scientific": "Pseudohelice subquadrata"
+  },
+  {
+    "korean": "두드럭조개",
+    "scientific": "Aculamprotula coreana"
+  },
+  {
+    "korean": "갯게",
+    "scientific": "Chasmagnathus convexus"
+  },
+  {
+    "korean": "거제외줄달팽이",
+    "scientific": "Satsuma myomphala"
+  },
+  {
+    "korean": "검붉은수지맨드라미",
+    "scientific": "Dendronephthya suensoni"
+  },
+  {
+    "korean": "금빛나팔돌산호",
+    "scientific": "Tubastraea coccinea"
+  },
+  {
+    "korean": "기수갈고둥",
+    "scientific": "Clithon retropictum"
+  },
+  {
+    "korean": "깃산호",
+    "scientific": "Plumarella spinosa"
+  },
+  {
+    "korean": "대추귀고둥",
+    "scientific": "Ellobium chinense"
+  },
+  {
+    "korean": "둔한진총산호",
+    "scientific": "Euplexaura crassa"
+  },
+  {
+    "korean": "망상맵시산호",
+    "scientific": "Echinogorgia reticulata"
+  },
+  {
+    "korean": "물거미",
+    "scientific": "Argyroneta aquatica"
+  },
+  {
+    "korean": "밤수지맨드라미",
+    "scientific": "Dendronephthya castanea"
+  },
+  {
+    "korean": "별혹산호",
+    "scientific": "Ellisella ceratophyta"
+  },
+  {
+    "korean": "붉은발말똥게",
+    "scientific": "Sesarmops intermedius"
+  },
+  {
+    "korean": "선침거미불가사리",
+    "scientific": "Ophiacantha linea"
+  },
+  {
+    "korean": "연수지맨드라미",
+    "scientific": "Dendronephthya mollis"
+  },
+  {
+    "korean": "염주알다슬기",
+    "scientific": "Koreanomelania nodifila"
+  },
+  {
+    "korean": "울릉도달팽이",
+    "scientific": "Karaftohelix adamsi"
+  },
+  {
+    "korean": "유착나무돌산호",
+    "scientific": "Dendrophyllia cribrosa"
+  },
+  {
+    "korean": "의염통성게",
+    "scientific": "Nacospatangus alta"
+  },
+  {
+    "korean": "자색수지맨드라미",
+    "scientific": "Dendronephthya putteri"
+  },
+  {
+    "korean": "잔가지나무돌산호",
+    "scientific": "Dendrophyllia ijimai"
+  },
+  {
+    "korean": "착생깃산호",
+    "scientific": "Plumarella adhaerans"
+  },
+  {
+    "korean": "참달팽이",
+    "scientific": "Koreanohadra koreana"
+  },
+  {
+    "korean": "측맵시산호",
+    "scientific": "Echinogorgia complexa"
+  },
+  {
+    "korean": "칼세오리옆새우",
+    "scientific": "Gammarus zeongogensis"
+  },
+  {
+    "korean": "해송",
+    "scientific": "Myriopathes japonica"
+  },
+  {
+    "korean": "흰발농게",
+    "scientific": "Austruca lactea"
+  },
+  {
+    "korean": "흰수지맨드라미",
+    "scientific": "Dendronephthya alba"
+  },
+  {
+    "korean": "광릉요강꽃",
+    "scientific": "Cypripedium japonicum"
+  },
+  {
+    "korean": "금자란",
+    "scientific": "Gastrochilus fuscopunctatus"
+  },
+  {
+    "korean": "나도풍란",
+    "scientific": "Sedirea japonica"
+  },
+  {
+    "korean": "만년콩",
+    "scientific": "Euchresta japonica"
+  },
+  {
+    "korean": "비자란",
+    "scientific": "Thrixspermum japonicum"
+  },
+  {
+    "korean": "암매",
+    "scientific": "Diapensia lapponica var. obovata"
+  },
+  {
+    "korean": "죽백란",
+    "scientific": "Cymbidium lancifolium"
+  },
+  {
+    "korean": "털복주머니란",
+    "scientific": "Cypripedium guttatum"
+  },
+  {
+    "korean": "풍란",
+    "scientific": "Neofinetia falcata"
+  },
+  {
+    "korean": "한라솜다리",
+    "scientific": "Leontopodium coreanum var. hallaisanense"
+  },
+  {
+    "korean": "한란",
+    "scientific": "Cymbidium kanran"
+  },
+  {
+    "korean": "가는동자꽃",
+    "scientific": "Lychnis kiusiana"
+  },
+  {
+    "korean": "가시연",
+    "scientific": "Euryale ferox"
+  },
+  {
+    "korean": "가시오갈피나무",
+    "scientific": "Eleutherococcus senticosus"
+  },
+  {
+    "korean": "각시수련",
+    "scientific": "Nymphaea tetragona var. minima"
+  },
+  {
+    "korean": "개가시나무",
+    "scientific": "Quercus gilva"
+  },
+  {
+    "korean": "갯봄맞이꽃",
+    "scientific": "Glaux maritima var. obtusifolia"
+  },
+  {
+    "korean": "검은별고사리",
+    "scientific": "Cyclosorus interruptus"
+  },
+  {
+    "korean": "구름병아리난초",
+    "scientific": "Neottianthe cucullata"
+  },
+  {
+    "korean": "기생꽃",
+    "scientific": "Trientalis europaea subsp. arctica"
+  },
+  {
+    "korean": "끈끈이귀개",
+    "scientific": "Drosera peltata var. nipponica"
+  },
+  {
+    "korean": "나도승마",
+    "scientific": "Kirengeshoma koreana"
+  },
+  {
+    "korean": "날개하늘나리",
+    "scientific": "Lilium dauricum"
+  },
+  {
+    "korean": "넓은잎제비꽃",
+    "scientific": "Viola mirabilis"
+  },
+  {
+    "korean": "노랑만병초",
+    "scientific": "Rhododendron aureum"
+  },
+  {
+    "korean": "노랑붓꽃",
+    "scientific": "Iris koreana"
+  },
+  {
+    "korean": "단양쑥부쟁이",
+    "scientific": "Aster altaicus var. uchiyamae"
+  },
+  {
+    "korean": "대성쓴풀",
+    "scientific": "Anagallidium dichotomum"
+  },
+  {
+    "korean": "대청부채",
+    "scientific": "Iris dichotoma"
+  },
+  {
+    "korean": "대흥란",
+    "scientific": "Cymbidium macrorhizon"
+  },
+  {
+    "korean": "독미나리",
+    "scientific": "Cicuta virosa"
+  },
+  {
+    "korean": "두잎약난초",
+    "scientific": "Cremastra unguiculata"
+  },
+  {
+    "korean": "매화마름",
+    "scientific": "Ranunculus trichophyllus var. kadzusensis"
+  },
+  {
+    "korean": "무주나무",
+    "scientific": "Lasianthus japonicus"
+  },
+  {
+    "korean": "물고사리",
+    "scientific": "Ceratopteris thalictroides"
+  },
+  {
+    "korean": "방울난초",
+    "scientific": "Habenaria flagellifera"
+  },
+  {
+    "korean": "백부자",
+    "scientific": "Aconitum coreanum"
+  },
+  {
+    "korean": "백양더부살이",
+    "scientific": "Orobanche filicicola"
+  },
+  {
+    "korean": "백운란",
+    "scientific": "Kuhlhasseltia nakaiana"
+  },
+  {
+    "korean": "복주머니란",
+    "scientific": "Cypripedium macranthos"
+  },
+  {
+    "korean": "분홍장구채",
+    "scientific": "Silene capitata"
+  },
+  {
+    "korean": "산분꽃나무",
+    "scientific": "Viburnum burejaeticum"
+  },
+  {
+    "korean": "산작약",
+    "scientific": "Paeonia obovata"
+  },
+  {
+    "korean": "삼백초",
+    "scientific": "Saururus chinensis"
+  },
+  {
+    "korean": "새깃아재비",
+    "scientific": "Woodwardia japonica"
+  },
+  {
+    "korean": "서울개발나물",
+    "scientific": "Pterygopleurum neurophyllum"
+  },
+  {
+    "korean": "석곡",
+    "scientific": "Dendrobium moniliforme"
+  },
+  {
+    "korean": "선제비꽃",
+    "scientific": "Viola raddeana"
+  },
+  {
+    "korean": "섬개야광나무",
+    "scientific": "Cotoneaster wilsonii"
+  },
+  {
+    "korean": "섬현삼",
+    "scientific": "Scrophularia takesimensis"
+  },
+  {
+    "korean": "섬시호",
+    "scientific": "Bupleurum latissimum"
+  },
+  {
+    "korean": "세뿔투구꽃",
+    "scientific": "Aconitum austrokoreense"
+  },
+  {
+    "korean": "손바닥난초",
+    "scientific": "Gymnadenia conopsea"
+  },
+  {
+    "korean": "솔잎난",
+    "scientific": "Psilotum nudum"
+  },
+  {
+    "korean": "순채",
+    "scientific": "Brasenia schreberi"
+  },
+  {
+    "korean": "신안새우난초",
+    "scientific": "Calanthe aristulifera"
+  },
+  {
+    "korean": "애기송이풀",
+    "scientific": "Pedicularis ishidoyana"
+  },
+  {
+    "korean": "연잎꿩의다리",
+    "scientific": "Thalictrum coreanum"
+  },
+  {
+    "korean": "왕제비꽃",
+    "scientific": "Viola websteri"
+  },
+  {
+    "korean": "으름난초",
+    "scientific": "Cyrtosia septentrionalis"
+  },
+  {
+    "korean": "자주땅귀개",
+    "scientific": "Utricularia yakusimensis"
+  },
+  {
+    "korean": "전주물꼬리풀",
+    "scientific": "Dysophylla yatabeana"
+  },
+  {
+    "korean": "정향풀",
+    "scientific": "Amsonia elliptica"
+  },
+  {
+    "korean": "제비동자꽃",
+    "scientific": "Lychnis wilfordii"
+  },
+  {
+    "korean": "제비붓꽃",
+    "scientific": "Iris laevigata"
+  },
+  {
+    "korean": "제주고사리삼",
+    "scientific": "Mankyua chejuense"
+  },
+  {
+    "korean": "조름나물",
+    "scientific": "Menyanthes trifoliata"
+  },
+  {
+    "korean": "죽절초",
+    "scientific": "Sarcandra glabra"
+  },
+  {
+    "korean": "지네발란",
+    "scientific": "Cleisostoma scolopendrifolium"
+  },
+  {
+    "korean": "진노랑상사화",
+    "scientific": "Lycoris chinensis var. sinuolata"
+  },
+  {
+    "korean": "차걸이란",
+    "scientific": "Oberonia japonica"
+  },
+  {
+    "korean": "참닻꽃",
+    "scientific": "Halenia coreana"
+  },
+  {
+    "korean": "참물부추",
+    "scientific": "Isoetes coreana"
+  },
+  {
+    "korean": "초령목",
+    "scientific": "Michelia compressa"
+  },
+  {
+    "korean": "칠보치마",
+    "scientific": "Metanarthecium luteo-viride"
+  },
+  {
+    "korean": "콩짜개란",
+    "scientific": "Bulbophyllum drymoglossum"
+  },
+  {
+    "korean": "큰바늘꽃",
+    "scientific": "Epilobium hirsutum"
+  },
+  {
+    "korean": "탐라란",
+    "scientific": "Gastrochilus japonicus"
+  },
+  {
+    "korean": "파초일엽",
+    "scientific": "Asplenium antiquum"
+  },
+  {
+    "korean": "피뿌리풀",
+    "scientific": "Stellera chamaejasme"
+  },
+  {
+    "korean": "한라송이풀",
+    "scientific": "Pedicularis hallaisanensis"
+  },
+  {
+    "korean": "한라옥잠난초",
+    "scientific": "Liparis auriculata"
+  },
+  {
+    "korean": "해오라비난초",
+    "scientific": "Habenaria radiata"
+  },
+  {
+    "korean": "혹난초",
+    "scientific": "Bulbophyllum inconspicuum"
+  },
+  {
+    "korean": "홍월귤",
+    "scientific": "Arctous rubra"
+  },
+  {
+    "korean": "그물공말",
+    "scientific": "Dictyosphaeria cavernosa"
+  },
+  {
+    "korean": "삼나무말",
+    "scientific": "Coccophora langsdorfii"
+  },
+  {
+    "korean": "화경솔밭버섯",
+    "scientific": "Omphalotus guepiniiformis"
+  },
+  {
+    "korean": "큰뒷부리도요",
+    "scientific": "Limosa lapponica"
+  },
+  {
+    "korean": "쇠제비갈매기",
+    "scientific": "Sterna albifrons"
+  },
+  {
+    "korean": "청호반새",
+    "scientific": "Halcyon pileata"
+  },
+  {
+    "korean": "붉은가슴흰죽지",
+    "scientific": "Aythya baeri"
+  },
+  {
+    "korean": "시베리아흰두루미",
+    "scientific": "Grus leucogeranus"
+  },
+  {
+    "korean": "둑중개",
+    "scientific": "Cottus koreanus"
+  },
+  {
+    "korean": "어름치",
+    "scientific": "Hemibarbus mylodon"
+  },
+  {
+    "korean": "새미",
+    "scientific": "Ladislavia taczanowskii"
+  },
+  {
+    "korean": "윤조롱박딱정벌레",
+    "scientific": "Acoptolabrus leechi yooni"
+  },
+  {
+    "korean": "홍줄나비",
+    "scientific": "Chalinga pratti"
+  },
+  {
+    "korean": "불나방",
+    "scientific": "Arctia caja"
+  },
+  {
+    "korean": "나도여로",
+    "scientific": "Zigadenus sibiricus"
+  },
+  {
+    "korean": "뿔제비갈매기",
+    "scientific": "Thalasseus bernsteini"
+  },
+  {
+    "korean": "눈썹고사리",
+    "scientific": "Asplenium wrightii"
+  },
+  {
+    "korean": "선모시대",
+    "scientific": "Adenophorat erecta"
+  },
+  {
+    "korean": "한라장구채",
+    "scientific": "Silene fasciculata"
+  },
+  {
+    "korean": "나도범의귀",
+    "scientific": "Mitella nuda"
+  },
+  {
+    "korean": "물석송",
+    "scientific": "Lycopodiella cernua"
+  },
+  {
+    "korean": "장백제비꽃",
+    "scientific": "Viola biflora"
+  }
+]

@@ -34,6 +34,12 @@ export default function Layout () {
           title: "Fundraise"
         }}
       />
+      <Tabs.Screen
+        name="search"
+        options={{
+          title: "Search"
+        }}
+      />
     </Tabs>
   )
 }

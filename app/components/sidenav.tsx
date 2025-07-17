@@ -8,6 +8,7 @@ import CollapsibleSearchBar from "./collapsibleSearchBar";
 import { useRouter } from "expo-router";
 import { Feather } from "@expo/vector-icons";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import SearchBar from "./searchbar";
 
 const ITEM_HEIGHT = 60;
 const DISTRICT_HEIGHT = 24;
@@ -80,7 +81,7 @@ const SideNav: FC<SideNavProps> = ({isOpen, setOpen, openModal}) => {
                         <View style={styles.sectionList}>
                             <View style={styles.pad} />
                             <View style={styles.section}>
-                                <CollapsibleSearchBar open={speciesSearchOpen} setOpen={setSpeciesSearchOpen} title="멸종위기종 정보" search={search} textInputRef={ref} />
+                                <SearchBar search={search} textInputRef={ref} placeholderText="Search Species By Name"/>
                             </View>
                             <SpeciesList open={speciesSearchOpen} data={speciesResult} />
                             <View style={styles.section}>

@@ -1,91 +1,56 @@
 import { AntDesign } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
-import { View, Text, StyleSheet, ScrollView, Dimensions, TouchableOpacity } from "react-native";
+import { View, StyleSheet, ScrollView, Dimensions, TouchableOpacity } from "react-native";
+import Text from '@/Text'
 import { Image } from 'expo-image';
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
-const speciesData = [
-    {
-        name: "수달",
-        image: require('@/assets/images/otter.jpg'),
-        description: "수달은 깨끗한 하천과 호수에 서식하며, 1급 멸종위기종입니다. 수질 오염과 서식지 파괴로 개체수가 감소하고 있습니다.",
-    },
-    {
-        name: "삵",
-        image: require('@/assets/images/leopard-cat.jpg'),
-        description: "삵은 산림과 습지 등 다양한 환경에 서식하는 2급 멸종위기종입니다. 서식지 파괴와 도로 교통사고 등으로 위협받고 있습니다.",
-    },
-    {
-        name: "산양",
-        image: require('@/assets/images/goral.jpg'),
-        description: "산양은 험준한 산악지대에 서식하는 1급 멸종위기종입니다. 밀렵과 서식지 감소로 위협받고 있습니다.",
-    },
-];
+
+const formatPrice = (num: number) => num.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
 const { width } = Dimensions.get("window");
-
-const Carousel = () => {
-    return (
-        <ScrollView
-            horizontal
-            pagingEnabled
-            showsHorizontalScrollIndicator={false}
-            style={styles.carouselContainer}
-        >
-            {speciesData.map((item, idx) => (
-                <View style={styles.carouselItem} key={idx}>
-                    <Image source={item.image} style={styles.carouselImage} />
-                    <Text style={styles.speciesName}>{item.name}</Text>
-                    <Text style={styles.speciesDesc}>{item.description}</Text>
-                </View>
-            ))}
-        </ScrollView>
-    );
-};
 
 const About: React.FC = () => {
     const router = useRouter(); 
     const insets = useSafeAreaInsets();
     return (
-    <View style={{ flex: 1, position: 'relative', paddingTop: insets.top, paddingBottom: insets.bottom }}>
+    <View style={{ flex: 1, position: 'relative' }}>
 
-        <ScrollView style={styles.container}>
-            <Text style={styles.title}>앱 소개</Text>
-            <Text style={styles.intro}>
-                <Text style={{ fontWeight: "bold" }}>한반도 멸종위기뷰</Text>은 한반도에 서식하는 멸종위기 동식물에 대한 정보를 제공합니다. 사용자는 멸종위기종의 분포, 특징, 보호 현황 등을 쉽게 확인할 수 있습니다.
-            </Text>
-
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>주요 기능</Text>
-                <Text style={styles.bullet}>• 멸종위기종 목록 및 상세 정보 제공</Text>
-                <Text style={styles.bullet}>• 검색 및 필터 기능 지원</Text>
-                <Text style={styles.bullet}>• 최신 보호 정책 및 뉴스 안내</Text>
-            </View>
-
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>멸종위기종 소개</Text>
-                <Carousel />
-            </View>
-
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>1급 멸종위기종</Text>
-                <Text style={styles.sectionDesc}>
-                    자연적 또는 인위적 위협요인으로 인하여 개체 수가 크게 줄어들어 멸종위기에 처한 야생생물로서 관계 중앙행정기관의 장과 협의하여 환경부령으로 정하는 종이며 현재 <Text style={{ fontWeight: "bold" }}>68종</Text>이 지정되었다.
-                </Text>
-            </View>
-
-            <View style={styles.section}>
-                <Text style={styles.sectionTitle}>2급 멸종위기종</Text>
-                <Text style={styles.sectionDesc}>
-                    자연적 또는 인위적 위협 요인으로 개체 수가 크게 줄어들고 있어 현재의 위협요인이 제거되거나 완화되지 아니할 경우 가까운 장래에 멸종위기에 처할 우려가 있는 야생생물로서 관계 중앙행정기관의 장과 협의하여 환경부령으로 정하는 종이며, 현재 <Text style={{ fontWeight: "bold" }}>214종</Text>이 지정되었다.
-                </Text>
-            </View>
-                <Text style={styles.sectionTitl}>정보 출처조항</Text>
-                <Text style={styles.sectionDes}>
-                    이 어플리케이션의 모든 정보는 국립생태원과 국립생물자원관에서 제공하는 데이터를 기반으로 하며, 대한민국 정부와 무관합니다. 어플리케이션 개발자는 이 정보로 인해 발생하는 어떠한 문제에 대해서도 책임을 지지 않습니다.
-                </Text>
-                <View style={{ marginTop: 20 }}>
+        <ScrollView style={[styles.container, {paddingBottom: insets.bottom, paddingTop: insets.top}]}>
+            <View style={styles.statusContainer}>
+                <Image source={require('@/assets/images/status-icon.png')} style={styles.logo}>
+                </Image>
+                <View style={styles.statusBox}>
+                    <Text style={styles.statusTitle}>Fundraising Status</Text>
+                    <View style={styles.statusBar}>
+                        <View style={styles.statusBarFilled} />
+                    </View>
                 </View>
+            </View>
+            <Text style={styles.price}>USD $2,123</Text>
+            <Text style={styles.desc}>Help protecting and caring endangered animals on the special log</Text>
+            <View style={styles.section}>
+                <Text style={styles.sectionDesc}>
+                    Provide proper food, care, and habitat 
+for the endangered species I look after.
+                </Text>
+            </View>
+            <View style={styles.section}>
+                <Text style={styles.sectionDesc}>
+                        Cover medical checkups and supplies 
+to keep them healthy.
+                </Text>
+            </View>
+            <View style={styles.section}>
+                <Text style={styles.sectionDesc}>
+                    Create a safe and enriched environment 
+where they can grow and thrive
+                </Text>
+            </View>
+            <View style={styles.emailContainer}>
+                <AntDesign name='mail' size={32} color='white' />
+                <Text style={styles.desc}>minwoodong@tcis.com</Text>
+            </View>
         </ScrollView>
         <TouchableOpacity style={[styles.backButton, {marginTop: insets.top + 8}]} onPress={() => {router.back();}}>
             <AntDesign name="back" size={24} color="white" />
@@ -96,15 +61,63 @@ const About: React.FC = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'rgb(246, 246, 246)',
-        padding: 20,
+        backgroundColor: '#14998f',
+        padding: 20
+    },
+    statusContainer: {
+        flexDirection: 'row',
+        width: '100%',
+        alignItems: 'center',
+        marginBottom: 20
+    },
+    logo: {
+        width: 80,
+        height: 80,
+        borderRadius: 12
+    },
+    statusBox: {
+        flex: 1,
+        height: 80,
+        justifyContent: 'space-between',
+        paddingLeft: 24
+    },
+    statusTitle: {
+        fontFamily: 'PoppinsBold',
+        fontSize: 20,
+        color: '#fff'
+    },
+    statusBar: {
+        borderRadius: 100,
+        height: 20,
+        backgroundColor: '#fff',
+        overflow: 'hidden',
+        width: '100%'
+    },
+    statusBarFilled: {
+        borderRadius: 100,
+        height: '100%',
+        backgroundColor: '#b8d8d6',
+        width: '66%'
+    },
+    spacer: {
+        height: 32
+    },
+    price: {
+        fontFamily: 'PoppinsBold',
+        fontSize: 28,
+        color: '#fff'
+    },
+    desc: {
+        color: '#fff',
+        marginVertical: 20,
+        fontSize: 18
     },
     title: {
+        flex:1,
         fontSize: 28,
         fontWeight: "bold",
-        marginVertical: 16,
-        color: "#2d3748",
-        textAlign: "center",
+        color: "#14998f",
+        textAlign: "center"
     },
     intro: {
         fontSize: 16,
@@ -113,30 +126,36 @@ const styles = StyleSheet.create({
         lineHeight: 22,
     },
     section: {
-        marginBottom: 28,
-        backgroundColor: "#fff",
-        borderRadius: 12,
-        padding: 16,
-        shadowColor: "#000",
-        shadowOpacity: 0.06,
-        shadowRadius: 4,
-        elevation: 2,
+        borderRadius: 20,
+        backgroundColor: '#fff',
+        padding: 40,
+        marginVertical: 10,
+        width: '100%'
+    },
+    sectionHead: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-end',
+        marginBottom: 24
     },
     sectionTitle: {
-        fontSize: 20,
-        fontWeight: "bold",
-        color: "#3182ce",
-        marginBottom: 8,
+        fontSize: 28,
+        fontFamily: 'PoppinsBold',
+        color: "#14998f"
+    },
+    sectionDate: {
+        fontSize: 12,
+        color: '#14998f'
     },
     bullet: {
         fontSize: 15,
-        color: "#333",
+        color: "#fff",
         marginLeft: 8,
         marginBottom: 4,
     },
     sectionDesc: {
         fontSize: 15,
-        color: "#444",
+        color: "#000",
         lineHeight: 21,
     },
     sectionTitl: {
@@ -148,6 +167,12 @@ const styles = StyleSheet.create({
         fontSize: 10,
         color: "#ccc",
         lineHeight: 16,
+    },
+    emailContainer: {
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        alignItems: 'center',
+        marginHorizontal: 40
     },
     carouselContainer: {
         marginTop: 8,
@@ -191,5 +216,4 @@ const styles = StyleSheet.create({
     width: 40,
     backgroundColor: 'rgb(60, 65, 69)', justifyContent: 'center', alignItems: 'center'}
 });
-
 export default About;
