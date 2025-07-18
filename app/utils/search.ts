@@ -1,6 +1,7 @@
 import speciesInfo from '@/assets/species_info.json'
 import districtCodes from '@/assets/district_codes.json'
 import distributions from '@/assets/species_distribution.json'
+import englishSpeciesInfoRaw from '@/assets/translated_species_info_full.json'
 import district_species from '@/assets/district_species_names.json'
 import province_species from '@/assets/province_species_names.json'
 
@@ -71,6 +72,57 @@ const codeAlias = {
     "45790": "52790",  // 고창군
     "45800": "52800"   // 부안군
 }
+
+// 1. turn the IIFE into a plain function
+function buildEnglishSpeciesInfo(id: string | number) {
+  const koreanData = speciesInfo.find((item: any) => item.id === id);
+  if (!koreanData) return null;           // safety: id not found
+
+  let englishData = englishSpeciesInfoRaw.find((item: any) => item.id === id);
+  if (!englishData) return koreanData;    // fallback: no English record
+
+  // copy the Korean distribution image into the English distribution section
+  const koreanDist = koreanData.extra_sections?.find((item: any) => 'img_url' in item);
+  const idx = englishData.extra_sections?.findIndex((item: any) => item.title === 'Distribution');
+  if (koreanDist && idx != null && idx > -1) {
+    //@ts-ignore
+    englishData.extra_sections[idx].img_url = koreanDist.img_url;
+  }
+  // merge Korean base data with English overrides
+  //@ts-ignore
+  return { ...koreanData, ...englishData };
+}
+
+// 2. run the function for every Korean id
+const englishSpeciesInfo = speciesInfo
+  .map((k) => buildEnglishSpeciesInfo(k.id))
+  .filter(Boolean);  
+
+// Helper to find species by id
+export function searchEnglishSpeciesDetail(id: number) {
+    const koreanData = speciesInfo.find((item: any) => item.id === id);
+    let englishData = englishSpeciesInfoRaw.find((item: any) => item.id === id);
+    const koreanDist = koreanData?.extra_sections.find((item: Object) => 'img_url' in item);
+    const i = englishData?.extra_sections.findIndex((item) => item.title === "Distribution");
+    //@ts-ignore
+    englishData!.extra_sections[i!]['img_url'] = koreanDist?.img_url;
+    return {...koreanData, ...englishData} as any;
+}
+
+const map = {
+    "포유류": "Mammal",
+    "조류": "Avian",
+    "파충류": "Reptile",
+    "양서류": "Amphibian",
+    "어류": "Fish",
+    "곤충류": "Insect",
+    "무척추동물": "Invertebrate",
+    "식물류": "Plant",
+    "해조류": "Seaweed",
+    "고등균류": "Fungi"
+}
+
+
 export const convertAlias = (text: string) => {
   return divisionAlias[text as keyof typeof divisionAlias];
 }
@@ -85,6 +137,7 @@ export interface SST {
     category: string,
     korean_name: string,
     english_name: string,
+    name?: string,
     image_url: string | null
 }
 
@@ -95,7 +148,18 @@ const speciesInfoById = speciesInfo.reduce((acc, cur) => {
     return acc;
 }, {} as Record<number, typeof speciesInfo[0]>);
 
-export const searchSpecies = (keyword: string): SST[] => {
+export const searchSpecies = (keyword: string, isEnglish=false): SST[] => {
+    if (isEnglish) return englishSpeciesInfo
+        .filter((obj: any) => obj.korean_name.includes(keyword) || obj.english_name.includes(keyword) || obj.name.includes(keyword))
+        .map(({ id, class_type, category, korean_name, english_name, name, image_url }) => ({
+            id,
+            class_type,
+            category,
+            name,
+            korean_name,
+            english_name,
+            image_url
+        }));
     return speciesInfo
         .filter((obj) => obj.korean_name.includes(keyword) || obj.english_name.includes(keyword))
         .map(({ id, class_type, category, korean_name, english_name, image_url }) => ({

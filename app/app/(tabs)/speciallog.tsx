@@ -53,9 +53,6 @@ const About: React.FC = () => {
                 <View style={{ marginTop: 20 }}>
                 </View>
         </ScrollView>
-        <TouchableOpacity style={[styles.backButton, {marginTop: insets.top + 8}]} onPress={() => {router.back();}}>
-            <AntDesign name="back" size={24} color="white" />
-        </TouchableOpacity>
     </View>
 )};
 

@@ -121,7 +121,6 @@ export default function Index() {
       setSafeAreaWidth(width);
       }}
     >
-      <GestureHandlerRootView>
         <View>
           <WebView
           ref={webviewRef}
@@ -133,14 +132,10 @@ export default function Index() {
           style={{ flex: 1, width: safeAreaWidth }}
           injectedJavaScript={injectedJS}
           />
-          <TouchableOpacity style={styles.menuButton} onPress={onNavButtonPress}>
-            <Feather name="menu" size={24} color="white"/>
-          </TouchableOpacity>
-          <SideNav isOpen={drawerOpen} setOpen={setDrawerOpen} openModal={openModalFromSideNav} />
+          {/*<SideNav isOpen={drawerOpen} setOpen={setDrawerOpen} openModal={openModalFromSideNav} />*/}
           <SwitchButton left="시/도" right="시/군/구" current={view} onSwitch={(text) => {switchView(text as divisionType)}}/>
           <BottomModal isOpen={modalOpen} data={selectedData} setIsOpen={setModalOpen} styles={{container:{height:'80%'}}} />
         </View>
-      </GestureHandlerRootView>
     </SafeAreaView>
   );
 }

@@ -6,13 +6,16 @@ import Text from '@/Text'
 import { Image } from 'expo-image';
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
-import { searchAreas, searchSpecies } from "@/utils/search";
+import { searchAreas, searchEnglishSpeciesDetail, searchSpecies, searchSpeciesDetail } from "@/utils/search";
 import CollapsibleSearchBar from "@/components/collapsibleSearchBar";
+import Modal from "@/components/anotherModal";
 import SearchBar from "@/components/searchbar";
 
 const formatPrice = (num: number) => num.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
 const { width } = Dimensions.get("window");
+
+
 
 const About: React.FC = () => {
     const router = useRouter(); 
@@ -24,9 +27,11 @@ const About: React.FC = () => {
     const [speciesDistributionOpen, setSpeciesDistributionOpen] = useState(true);
     const [speciesResult, setSpeciesResult] = useState<any[]>([]);
     const [districtsResult, setDistrictsResult] = useState<any[]>([]);
-    const search = (text: string) => {setSpeciesResult(searchSpecies(text))}
+    const search = (text: string) => {setSpeciesResult(searchSpecies(text, true))}
     const searchDistricts = (text: string) => {setDistrictsResult(searchAreas(text))}
+    const [item, setItem] = useState<any>()
     const height = useSharedValue(0);
+    const [isOpen, setIsOpen] = useState(false)
     const [storedHeight, setStoredHeight] = useState(0);
     const [defaultHeight, setDefaultHeight] = useState(0);
     useEffect(() => {
@@ -38,15 +43,60 @@ const About: React.FC = () => {
         if (speciesSearchOpen) height.value = withTiming(ITEM_HEIGHT * speciesResult.length + defaultHeight, {duration: 300})
         setStoredHeight(ITEM_HEIGHT * speciesResult.length + defaultHeight);
     },[speciesResult])
+
+    useEffect(() => {
+        if (item) setIsOpen(true);
+    },[item])
     const close = () => {if (ref) ref.current?.blur(); if (ref2) ref2.current?.blur()}
     return (
+        <>
+        <Modal isOpen={isOpen} setIsOpen={setIsOpen} styles={{container:{height:'100%'}}}>
+            <Image source={item?.extra_sections.at(-1).img_url} style={{marginBottom: 8, width: '100%', height: 300}} contentFit="contain" />
+             <View style={modal.headerContainer}>
+                <View style={{justifyContent:'space-between', flex: 1}}>
+                    <Text style={modal.headerTitle}>{item?.name}</Text>
+                    <View style={{flexDirection: 'row', justifyContent:'space-between'}}>
+                        <Text style={[modal.headerDesc, {marginBottom:16}]}>{item?.korean_name + '\n' + item?.english_name}</Text>
+                        <TouchableOpacity onPress={() => router.navigate(`/description?id=${item?.id}`)} style={{paddingVertical: 4, paddingHorizontal: 8, borderRadius: 4, backgroundColor:'#14998f', alignSelf:'center'}}>
+                            <Text style={{fontSize: 9.5, color:'#fff'}}>Full Details</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+                <Image source={item?.image_url} style={modal.headerLogo} />
+             </View>
+             <View style={modal.tbl}>
+                <View style={modal.row}>
+                    <View style={modal.cell1}>
+                        <Text style={{fontSize:9.5, textAlign:'center', color:'#14998f'}}>Level of Endangerment</Text>
+                    </View>
+                    <View style={modal.cell5}>
+                        <Text style={{flexWrap: 'wrap', fontSize:9.5, color:'#14998f'}}>{item?.conservation_actions[5].action_type}</Text>
+                    </View>
+                </View>
+                <View style={modal.row}>
+                    <View style={modal.cell1}>
+                        <Text style={{fontSize:9.5, textAlign:'center', color:'#14998f'}}>Threats</Text>
+                    </View>
+                    <View style={modal.cell5}>
+                        <Text style={{flexWrap: 'wrap', fontSize:9.5, color:'#14998f'}}>{item?.extra_sections.at(-3).content}</Text>
+                    </View>
+                </View>
+                <View style={[modal.row, {height: 160}]}>
+                    <View style={modal.cell1}>
+                        <Text style={{fontSize:9.5, textAlign:'center', color:'#14998f'}}>Description</Text>
+                    </View>
+                    <View style={modal.cell5}>
+                        <Text style={{flexWrap: 'wrap', fontSize:9.5, color:'#14998f'}}>{item?.extra_sections.at(-5).content}</Text>
+                    </View>
+                </View>
+             </View>
+        </Modal>
     <KeyboardAvoidingView behavior='padding' style={{ flex: 1, position: 'relative' }}>
-
         <ScrollView style={[styles.container, {paddingBottom: insets.bottom, paddingTop: insets.top}]}>
             <View style={styles.statusContainer}>
                 <Animated.View style={styles.section} onLayout={(e) => {if (defaultHeight === 0) setDefaultHeight(e.nativeEvent.layout.height)}}>
                     <SearchBar search={search} textInputRef={ref}  placeholderText='Search By Name'/>
-                    <SpeciesList open={speciesSearchOpen} data={speciesResult} />
+                    <SpeciesList open={speciesSearchOpen} data={speciesResult} setData={setItem} />
                 </Animated.View>
                 {/*<View style={styles.section}>
                     <SearchBar search={searchDistricts} textInputRef={ref2} placeholderText="Search Area" />
@@ -57,10 +107,9 @@ const About: React.FC = () => {
                 
             </View>
         </ScrollView>
-        <TouchableOpacity style={[styles.backButton, {marginTop: insets.top + 8}]} onPress={() => {router.back();}}>
-            <AntDesign name="back" size={24} color="white" />
-        </TouchableOpacity>
+
     </KeyboardAvoidingView>
+    </>
 )};
 
 const ITEM_HEIGHT = 60;
@@ -69,9 +118,10 @@ const DISTRICT_HEIGHT = 40;
 interface SpeciesListProps {
     data: any[]
     open: boolean
+    setData: (item: any) => void
 }
 
-const SpeciesList: FC<SpeciesListProps> = memo(({data, open}) => {
+const SpeciesList: FC<SpeciesListProps> = memo(({data, open, setData}) => {
     const router = useRouter();
     const height = useSharedValue(0);
     const [storedHeight,setStoredHeight] = useState(0);
@@ -96,13 +146,11 @@ const SpeciesList: FC<SpeciesListProps> = memo(({data, open}) => {
                     renderItem={({ item }) => (
                         <TouchableOpacity
                             style={{flexDirection:'row', marginBottom: 8}}
-                            onPress={() => {
-                                router.navigate(`/description?id=${item.id}`);
-                            }}
+                            onPress={() => {const data = searchEnglishSpeciesDetail(item.id);  setData(data)}}
                         >
                             <Image source={item['image_url']} style={{width:ITEM_HEIGHT * 1.33, height: ITEM_HEIGHT}} />
                             <View style={{flex: 1, justifyContent: 'center'}}>
-                                <Text>{item['korean_name']}</Text>
+                                <Text>{item['name']}({item['korean_name']})</Text>
                                 <Text style={{fontSize: 10}}>{item['english_name']}</Text>
                             </View>
                         </TouchableOpacity>
@@ -155,37 +203,42 @@ const DistrictList: FC<DistrictListProps> = memo(({data, open, openModal}) => {
 
 
 const modal = StyleSheet.create({
-    closing: {
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        top: 0,
-        backgroundColor: 'rgba(0,0,0,0.5)'
+    headerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
     },
-    container: {
-        position: 'absolute',
-        width: '100%',
-        zIndex: 5,
-        bottom: 0,
-        backgroundColor: 'rgb(240,240,240)',
-        borderTopRightRadius: 16,
-        borderTopLeftRadius: 16,
-        padding: 12,
+    headerLogo: {
+        width: 80,
+        height: 80,
+        borderRadius: 12,
+        marginLeft: 8,
+        marginBottom: 8
     },
-    tabView: {
-        height: '100%',
-        width: '100%',
-        position: 'relative',
-        flexDirection: 'row'
+    headerTitle: {
+        fontSize: 24,
+        color: '#14998f'
     },
-    tab: {
-        height: '100%',
-        width: '100%',
+    headerDesc: {
+        fontSize: 10
     },
-    closeIcon: {
-        position: 'absolute',
-        top: 16,
-        right: 16
+    tbl: {
+        gap: 8
+    },
+    row: {
+        height: 60,
+        flexDirection: 'row',
+        width: '100%',
+        gap: 8
+    },
+    cell1: {
+        width: '20%',
+        backgroundColor: '#ece8c2',
+        justifyContent: 'center',
+        alignContent: 'center'
+    },
+    cell5: {
+        width: '80%',
+        backgroundColor: '#ece8c2',
     }
 })
 

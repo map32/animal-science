@@ -52,9 +52,6 @@ where they can grow and thrive
                 <Text style={styles.desc}>minwoodong@tcis.com</Text>
             </View>
         </ScrollView>
-        <TouchableOpacity style={[styles.backButton, {marginTop: insets.top + 8}]} onPress={() => {router.back();}}>
-            <AntDesign name="back" size={24} color="white" />
-        </TouchableOpacity>
     </View>
 )};
 

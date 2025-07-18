@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "한반도 멸종위기뷰",
+    "name": "Wild Whispers",
     "slug": "koreaendangeredanimals",
-    "version": "1.0.0",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "koreaendangeredanimals",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, ScrollView, StyleSheet, SafeAreaView, TouchableOpacity } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import speciesData from "@/assets/species_info.json";

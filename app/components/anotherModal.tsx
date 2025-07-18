@@ -1,18 +1,18 @@
-import React, {useState, useEffect, useRef, FC, use} from 'react';
+import React, {useState, useEffect, useRef, FC, use, PropsWithChildren} from 'react';
 import {StyleSheet, View, Text, TouchableOpacity, Pressable, ScrollView, LayoutChangeEvent} from 'react-native';
 import Animated, {useSharedValue, useAnimatedStyle, withTiming, interpolate, Extrapolation, runOnJS} from 'react-native-reanimated';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
 interface BottomModalProps {
-    styles: any,
+    styles?: any,
     isOpen: boolean,
     setIsOpen: (o:boolean) => void
-    data?: any
 }
 
-const Modal: FC<BottomModalProps> = ({...props}) => {
+const Modal: FC<PropsWithChildren<BottomModalProps>> = ({...props}) => {
     const position = useSharedValue<number>(1000);
     const height = useSharedValue<number>(0);
+    const {children} = props;
     const setHeight = (e:LayoutChangeEvent) => {
         "worklet";
         height.value = e.nativeEvent.layout.height;
@@ -50,11 +50,10 @@ const Modal: FC<BottomModalProps> = ({...props}) => {
         else position.value = withTiming(height.value * 1.2, {duration: 300})
     },[props.isOpen])
     return (<>
-        {props.isOpen ? <Pressable style={styles.closing} onPress={close}/> : null}
-        <Animated.View style={[styles.container, props.styles.container, backerPositionStyle]} />
+        <Animated.View style={[styles.container, props.styles?.container, backerPositionStyle]} />
         <GestureDetector gesture={gesture}>
-            <Animated.View style={[styles.container, props.styles.container, positionStyle]} onLayout={setHeight}>
-                
+            <Animated.View style={[styles.container, props.styles?.container, positionStyle]} onLayout={setHeight}>
+                {children}
             </Animated.View>
          </GestureDetector>
         </>

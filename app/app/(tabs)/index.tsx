@@ -106,9 +106,6 @@ By learning about them and sharing what we observe, we can all help protect Eart
                 <View style={{ marginTop: 20 }}>
                 </View>
         </ScrollView>
-        <TouchableOpacity style={[styles.backButton, {marginTop: insets.top + 8}]} onPress={() => {router.back();}}>
-            <AntDesign name="back" size={24} color="white" />
-        </TouchableOpacity>
     </View>
 )};
 
