@@ -43,9 +43,9 @@ export const DivisionSpeciesList: FC<DivisionTableProps> = ({ data }) => {
     return (
         <View style={tableStyles.table}>
             <View style={tableStyles.headerRow}>
-                <Text style={[tableStyles.cell, tableStyles.header]}>이름</Text>
-                <Text style={[tableStyles.cell, tableStyles.header]}>분류</Text>
-                <Text style={[tableStyles.cell, tableStyles.header]}>등급</Text>
+                <Text style={[tableStyles.cell, tableStyles.header]}>Name</Text>
+                <Text style={[tableStyles.cell, tableStyles.header]}>Classification</Text>
+                <Text style={[tableStyles.cell, tableStyles.header]}>Endangerment Level</Text>
             </View>
             <FlatList
                 data={data}
@@ -62,14 +62,14 @@ export const DivisionSpeciesList: FC<DivisionTableProps> = ({ data }) => {
                             }}>
                         <View style={tableStyles.row}>
                             <View style={tableStyles.cell}>
-                                <Text style={{fontSize: 10}}>{item.korean_name}</Text>
+                                <Text style={{fontSize: 10}}>{item.name}({item.korean_name})</Text>
                                 <Text style={{fontSize: 9}}>{item.english_name}</Text>
                             </View>
                             <View style={tableStyles.labelCell}>
                                 <View style={[tableStyles.colorDot, { backgroundColor: CATEGORY_COLORS[CATEGORY_LABELS_EN[item.category]] }]} />
                                 <Text style={tableStyles.labelText}>{item.category}</Text>
                             </View>
-                            <Text style={tableStyles.cell}>{item.class_type === 'class 1' ? '1급' : item.class_type === 'class 2' ? '2급' : '기타'}</Text>
+                            <Text style={tableStyles.cell}>{item.class_type === 'class 1' ? 'class 1' : item.class_type === 'class 2' ? 'class 2' : 'other'}</Text>
                         </View>
                     </TouchableOpacity>
                 )}

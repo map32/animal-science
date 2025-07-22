@@ -148,9 +148,15 @@ const speciesInfoById = speciesInfo.reduce((acc, cur) => {
     return acc;
 }, {} as Record<number, typeof speciesInfo[0]>);
 
+const englishSpeciesInfoById = englishSpeciesInfo.reduce((acc, cur) => {
+    acc[cur!.id] = cur;
+    return acc;
+}, {} as Record<number, typeof englishSpeciesInfo[0]>);
+
 export const searchSpecies = (keyword: string, isEnglish=false): SST[] => {
+    if (keyword.length === 0) return [];
     if (isEnglish) return englishSpeciesInfo
-        .filter((obj: any) => obj.korean_name.includes(keyword) || obj.english_name.includes(keyword) || obj.name.includes(keyword))
+        .filter((obj: any) => obj.korean_name.includes(keyword.trim()) || obj.english_name.toLowerCase().includes(keyword.toLowerCase().trim()) || obj.name.toLowerCase().includes(keyword.toLowerCase().trim()))
         .map(({ id, class_type, category, korean_name, english_name, name, image_url }) => ({
             id,
             class_type,
@@ -161,7 +167,7 @@ export const searchSpecies = (keyword: string, isEnglish=false): SST[] => {
             image_url
         }));
     return speciesInfo
-        .filter((obj) => obj.korean_name.includes(keyword) || obj.english_name.includes(keyword))
+        .filter((obj) => obj.korean_name.includes(keyword.trim()) || obj.english_name.toLowerCase().includes(keyword.toLowerCase().trim()))
         .map(({ id, class_type, category, korean_name, english_name, image_url }) => ({
             id,
             class_type,
@@ -172,15 +178,23 @@ export const searchSpecies = (keyword: string, isEnglish=false): SST[] => {
         }));
 }
 
-export const searchSpeciesDetail = (id: number): any => {
-    return speciesInfoById[id]
+export const searchSpeciesDetail = (id: number, isEnglish=false): any => {
+    return isEnglish ? englishSpeciesInfoById[id] : speciesInfoById[id]
 }
 
-export const searchSpeciesSummary = (id: number): SpeciesSummaryType => {
-    const obj = speciesInfoById[id]
-    if (!obj) return undefined;
-    const { class_type, category, korean_name, english_name, image_url } = obj;
-    return { id , class_type, category, korean_name, english_name, image_url }
+export const searchSpeciesSummary = (id: number, isEnglish=false): SpeciesSummaryType => {
+    if (!isEnglish) {
+        const obj = speciesInfoById[id]
+        if (!obj) return undefined;
+        const { class_type, category, korean_name, english_name, image_url } = obj;
+        return { id , class_type, category, korean_name, english_name, image_url }
+    } else {
+        const obj = englishSpeciesInfoById[id]
+        if (!obj) return undefined;
+        //@ts-ignore
+        const { class_type, category, korean_name, name, english_name, image_url } = obj;
+        return { id , class_type, category, korean_name, name, english_name, image_url }
+    }
 }
 
 export const searchAreas = (keyword: string): any[] => {
@@ -193,5 +207,5 @@ export const searchAreas = (keyword: string): any[] => {
 
 export const searchAreaByName = (name: string): any | undefined => {
     const selected: any = distributions.find((obj) => {return obj.name === name})
-    return selected ? {...selected['distribution'], name} : undefined;
+    return selected ? {...selected['distribution'], name, english_name: selected.english_name} : undefined;
 }

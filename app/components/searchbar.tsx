@@ -26,6 +26,8 @@ const SearchBar: FC<SearchBarProps> = ({search, textInputRef, placeholderText}) 
             onFocus={onFocus}
             onBlur={onBlur}
             placeholderTextColor='gray'
+            onSubmitEditing={() => search(text)}
+            autoCapitalize='none'
             />
             <Animated.View style={[styles.border, widthStyle]} />
         </View>

@@ -27,7 +27,7 @@ const map = {
     "어류": "Fish",
     "곤충류": "Insect",
     "무척추동물": "Invertebrate",
-    "식물류": "Plant",
+    "육상식물": "Plant",
     "해조류": "Seaweed",
     "고등균류": "Fungi"
 }

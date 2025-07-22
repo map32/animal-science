@@ -4,7 +4,7 @@ import React from "react";
 import { View, StyleSheet, ScrollView, Dimensions, TouchableOpacity } from "react-native";
 import Text from '@/Text'
 import { Image } from 'expo-image';
-import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 const speciesData = [
     {
         name: "Otter",
@@ -56,7 +56,7 @@ const About: React.FC = () => {
                 <Text style={styles.title}>WILDWHISPERS</Text>
             </View>
             <Text style={styles.intro}>
-                <Text style={{ fontWeight: "bold" }}>Wild Whispers</Text> provides the information on 282 endangered species in Korean Peninsula, along with its distribution
+                <Text style={{ fontWeight: "bold" }}>Wild Whispers</Text> provides the information on 282 endangered species in Korean Peninsula, along with its distribution.
             </Text>
 
             <View style={styles.section}>
@@ -98,6 +98,11 @@ By learning about them and sharing what we observe, we can all help protect Eart
                      Species that can become extinct in the near future due to natural or man-made causes reducing its numbers if the causes are not remedied. Decided by the Ministry of Environment and related administrative institutions,<Text style={{ fontWeight: "bold" }}>214 Class 2 species</Text> are currently registered.
                 </Text>
             </View>
+
+                <Text style={styles.intro}>
+                    Developed by Dong Minwoo. <AntDesign name='mail' size={16} /> minwoodong@tcis.com
+                </Text>
+
                 <Text style={styles.sectionTitl}>Information Disclaimer</Text>
                 <Text style={styles.sectionDes}>
                     All information in this app are based on the data from the Institute of Ecology and the Institute of Biological Resources, and the app is not affiliated with the Korean government. The developer does not take any responsibility for any problems caused by the information.
@@ -128,7 +133,6 @@ const styles = StyleSheet.create({
     title: {
         flex:1,
         fontSize: 28,
-        fontWeight: "bold",
         color: "#14998f",
         textAlign: "center"
     },

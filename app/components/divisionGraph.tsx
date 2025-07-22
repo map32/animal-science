@@ -31,17 +31,29 @@ const CATEGORY_LABELS_KO: { [key: string]: string } = {
     seaweeds: '해조류',
     fungi: '고등균류',
 }
+const CATEGORY_LABELS_EN: { [key: string]: string } = {
+    mammals: 'Mammal',
+    birds: 'Avian',
+    reptiles: 'Reptile',
+    amphibians: 'Amphibian',
+    fish: 'Fish',
+    insects: 'Insect',
+    invertebrates: 'Invertebrate',
+    plants: 'Plant',
+    seaweeds: 'Seaweed/Algae',
+    fungi: 'Fungi',
+}
 
 
 const DivisionGraph: FC<DivisionGraphProps> = ({size, data}) => {
     const slices = useMemo(() => {
         return data !== undefined ? Object.entries(data)
-            .filter(([key, value]) => key !== "total" && key !== "name" && key !== "code" && value !== "0")
-            .map(([key, value]) => ({value: parseInt(value, 10), color: CATEGORY_COLORS[key], label:{text: CATEGORY_LABELS_KO[key]}})) : []
+            .filter(([key, value]) => key !== "total" && key !== "name" && key !== "english_name" && key !== "code" && value !== "0")
+            .map(([key, value]) => ({value: parseInt(value, 10), color: CATEGORY_COLORS[key], label:{text: CATEGORY_LABELS_EN[key]}})) : []
     }, [data])
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{data ? data['name'] : ''} 멸종위기종 분포</Text>
+            <Text style={styles.title}>Endangered Species in {data ? data['english_name'] : ''}</Text>
             {slices.length > 0 ? <PieChart widthAndHeight={size} series={slices} cover={0.5}/> : null}
         </View>
     )

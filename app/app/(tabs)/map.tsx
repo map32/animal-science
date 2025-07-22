@@ -5,13 +5,11 @@ import {readAsStringAsync} from 'expo-file-system';
 import WebView, { WebViewMessageEvent } from "react-native-webview";
 import Feather from '@expo/vector-icons/Feather';
 import divisions from '@/assets/divisions.json'
-import SideNav from "@/components/sidenav";
 import BottomModal from "@/components/bottomModal";
 import distributions from '@/assets/species_distribution.json'
 import districts from '@/assets/districts.json';
 import districtCodes from '@/assets/district_codes.json';
 import { SwitchButton } from "@/components/switchButton";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import district_species from '@/assets/district_species_names.json'
 import province_species from '@/assets/province_species_names.json'
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -50,9 +48,9 @@ export default function Index() {
         const foundSpeciesList = province_species[selected['name'] as keyof typeof province_species]
         let speciesList: any[] = [];
         if (foundSpeciesList) {
-          speciesList = foundSpeciesList.map((item) => item.id ? searchSpeciesSummary(item.id) : null).filter((item) => item !== null)
+          speciesList = foundSpeciesList.map((item) => item.id ? searchSpeciesSummary(item.id, true) : null).filter((item) => item !== null)
         }
-        setSelectedData({distribution: {...selected, name: data.name}, speciesList})
+        setSelectedData({distribution: {...selected, name: data.name, english_name: selected.english_name}, speciesList})
       }
       setModalOpen(true)
     } else if (type === 'district-click') {
@@ -64,9 +62,9 @@ export default function Index() {
         const foundSpeciesList = district_species[code as keyof typeof district_species];
         let speciesList: any[] = [];
         if (foundSpeciesList) {
-          speciesList = foundSpeciesList.map((item) => item.id ? searchSpeciesSummary(item.id) : null).filter((item) => item !== null)
+          speciesList = foundSpeciesList.map((item) => item.id ? searchSpeciesSummary(item.id, true) : null).filter((item) => item !== null)
         }
-        setSelectedData({distribution: found, speciesList})
+        setSelectedData({distribution: {...found, english_name: selected['SIG_ENG_NM']}, speciesList})
         setModalOpen(true)
       }
     }
@@ -112,9 +110,7 @@ export default function Index() {
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
-      width: '100%',
-      paddingTop: insets.top,
-      paddingBottom: insets.bottom,
+      width: '100%'
       }}
       onLayout={event => {
       const { width } = event.nativeEvent.layout;

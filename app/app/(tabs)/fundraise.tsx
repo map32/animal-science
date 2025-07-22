@@ -14,8 +14,6 @@ const About: React.FC = () => {
     const router = useRouter(); 
     const insets = useSafeAreaInsets();
     return (
-    <View style={{ flex: 1, position: 'relative' }}>
-
         <ScrollView style={[styles.container, {paddingBottom: insets.bottom, paddingTop: insets.top}]}>
             <View style={styles.statusContainer}>
                 <Image source={require('@/assets/images/status-icon.png')} style={styles.logo}>
@@ -52,14 +50,13 @@ where they can grow and thrive
                 <Text style={styles.desc}>minwoodong@tcis.com</Text>
             </View>
         </ScrollView>
-    </View>
 )};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#14998f',
-        padding: 20
+        paddingHorizontal: 20
     },
     statusContainer: {
         flexDirection: 'row',
@@ -169,7 +166,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent:'space-between',
         alignItems: 'center',
-        marginHorizontal: 40
+        marginHorizontal: 40,
+        paddingBottom:200
     },
     carouselContainer: {
         marginTop: 8,

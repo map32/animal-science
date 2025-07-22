@@ -77,6 +77,9 @@ export const SwitchButton: React.FC<SwitchButtonProps> = ({
 const styles = StyleSheet.create({
     container: {
         alignItems: "center",
+        position: 'absolute',
+        bottom: 16,
+        left: 16
     },
     switchBackground: {
         flexDirection: "row",

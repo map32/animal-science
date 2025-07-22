@@ -28,6 +28,19 @@ const CATEGORY_LABELS_KO: { [key: string]: string } = {
     fungi: '고등균류',
 }
 
+const CATEGORY_LABELS_EN: { [key: string]: string } = {
+    mammals: 'Mammal',
+    birds: 'Avian',
+    reptiles: 'Reptile',
+    amphibians: 'Amphibian',
+    fish: 'Fish',
+    insects: 'Insect',
+    invertebrates: 'Invertebrate',
+    plants: 'Plant',
+    seaweeds: 'Seaweed/Algae',
+    fungi: 'Fungi',
+}
+
 interface DivisionTableProps {
     data?: { [key: string]: string }
 }
@@ -39,15 +52,15 @@ export const DivisionTable: FC<DivisionTableProps> = ({ data }) => {
     return (
         <View style={tableStyles.table}>
             <View style={tableStyles.headerRow}>
-                <Text style={[tableStyles.cell, tableStyles.header]}>분류</Text>
-                <Text style={[tableStyles.cell, tableStyles.header]}>개수</Text>
+                <Text style={[tableStyles.cell, tableStyles.header]}>Classification</Text>
+                <Text style={[tableStyles.cell, tableStyles.header]}>Count</Text>
             </View>
             <ScrollView style={tableStyles.content} >
                 {rows.map(([key, value]) => (
                     <View key={key} style={tableStyles.row}>
                         <View style={tableStyles.labelCell}>
                             <View style={[tableStyles.colorDot, { backgroundColor: CATEGORY_COLORS[key] }]} />
-                            <Text style={tableStyles.labelText}>{CATEGORY_LABELS_KO[key]}</Text>
+                            <Text style={tableStyles.labelText}>{CATEGORY_LABELS_EN[key]}</Text>
                         </View>
                         <Text style={tableStyles.cell}>{value}</Text>
                     </View>

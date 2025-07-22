@@ -51,6 +51,7 @@ const About: React.FC = () => {
     return (
         <>
         <Modal isOpen={isOpen} setIsOpen={setIsOpen} styles={{container:{height:'100%'}}}>
+            <View style={{flex: 1}} />
             <Image source={item?.extra_sections.at(-1).img_url} style={{marginBottom: 8, width: '100%', height: 300}} contentFit="contain" />
              <View style={modal.headerContainer}>
                 <View style={{justifyContent:'space-between', flex: 1}}>
@@ -78,7 +79,7 @@ const About: React.FC = () => {
                         <Text style={{fontSize:9.5, textAlign:'center', color:'#14998f'}}>Threats</Text>
                     </View>
                     <View style={modal.cell5}>
-                        <Text style={{flexWrap: 'wrap', fontSize:9.5, color:'#14998f'}}>{item?.extra_sections.at(-3).content}</Text>
+                        <Text style={{flexWrap: 'wrap', fontSize:9.5, color:'#14998f'}} numberOfLines={4}>{item?.extra_sections.at(-3).content}</Text>
                     </View>
                 </View>
                 <View style={[modal.row, {height: 160}]}>
@@ -86,13 +87,17 @@ const About: React.FC = () => {
                         <Text style={{fontSize:9.5, textAlign:'center', color:'#14998f'}}>Description</Text>
                     </View>
                     <View style={modal.cell5}>
-                        <Text style={{flexWrap: 'wrap', fontSize:9.5, color:'#14998f'}}>{item?.extra_sections.at(-5).content}</Text>
+                        <Text style={{flexWrap: 'wrap', fontSize:9.5, color:'#14998f'}} numberOfLines={12}>{item?.extra_sections.at(-5).content}</Text>
                     </View>
                 </View>
              </View>
         </Modal>
     <KeyboardAvoidingView behavior='padding' style={{ flex: 1, position: 'relative' }}>
         <ScrollView style={[styles.container, {paddingBottom: insets.bottom, paddingTop: insets.top}]}>
+            <View style={styles.logoContainer}>
+                <Image source={require('@/assets/images/logo.png')} style={[styles.logo, {backgroundColor:'white'}]} />
+                <Text style={styles.title}>Animal Search</Text>
+            </View>
             <View style={styles.statusContainer}>
                 <Animated.View style={styles.section} onLayout={(e) => {if (defaultHeight === 0) setDefaultHeight(e.nativeEvent.layout.height)}}>
                     <SearchBar search={search} textInputRef={ref}  placeholderText='Search By Name'/>
@@ -145,13 +150,13 @@ const SpeciesList: FC<SpeciesListProps> = memo(({data, open, setData}) => {
                     scrollEnabled={false}
                     renderItem={({ item }) => (
                         <TouchableOpacity
-                            style={{flexDirection:'row', marginBottom: 8}}
+                            style={{flexDirection:'row', marginBottom: 8, backgroundColor:'#fafafa'}}
                             onPress={() => {const data = searchEnglishSpeciesDetail(item.id);  setData(data)}}
                         >
-                            <Image source={item['image_url']} style={{width:ITEM_HEIGHT * 1.33, height: ITEM_HEIGHT}} />
-                            <View style={{flex: 1, justifyContent: 'center'}}>
-                                <Text>{item['name']}({item['korean_name']})</Text>
-                                <Text style={{fontSize: 10}}>{item['english_name']}</Text>
+                            <Image source={item['image_url']} style={{width:ITEM_HEIGHT * 1.33, height: ITEM_HEIGHT, borderRadius: 4}} />
+                            <View style={{flex: 1, justifyContent: 'center', paddingLeft: 8}}>
+                                <Text style={{color: '#14998f'}}>{item['name']}({item['korean_name']})</Text>
+                                <Text style={{fontSize: 10, color: '#14998f'}}>{item['english_name']}</Text>
                             </View>
                         </TouchableOpacity>
                     )}
@@ -233,12 +238,18 @@ const modal = StyleSheet.create({
     cell1: {
         width: '20%',
         backgroundColor: '#ece8c2',
+        borderRadius:2,
         justifyContent: 'center',
-        alignContent: 'center'
+        alignContent: 'center',
+        padding: 4
     },
     cell5: {
         width: '80%',
         backgroundColor: '#ece8c2',
+        borderRadius:2,
+        padding: 4,
+        justifyContent: 'center',
+        alignContent: 'center',
     }
 })
 
@@ -256,6 +267,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 20
     },
+    logoContainer: {
+        flexDirection: 'row',
+        width: '100%',
+        alignItems: 'center',
+        marginBottom: 18
+    },
+    title: {
+        flex:1,
+        fontSize: 28,
+        color: "white",
+        textAlign: "center"
+    },
     logo: {
         width: 80,
         height: 80,
@@ -265,13 +288,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         marginVertical: 20,
         fontSize: 18
-    },
-    title: {
-        flex:1,
-        fontSize: 28,
-        fontWeight: "bold",
-        color: "#14998f",
-        textAlign: "center"
     },
     section: {
         borderRadius: 20,
